@@ -345,14 +345,13 @@
   </section>
 
 
-    <script>
+  <script>
     const toggle = document.getElementById('darkModeToggle');
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       const isDark = document.body.classList.contains('dark-mode');
       toggle.setAttribute('aria-pressed', isDark);
     });
-
 
     const langText = {
       en: {
@@ -388,7 +387,6 @@
       document.querySelector(".newsletter h2").textContent = langText[lang].newsletter;
       document.querySelector(".newsletter button").textContent = langText[lang].subscribe;
     });
-
 
       const musicToggle = document.getElementById('musicToggle');
       const bgMusic = document.getElementById('bgMusic');
@@ -448,30 +446,35 @@
         }
         });
 
-    const commissionType = document.getElementById("commissionType");
-    const additionalChars = document.getElementById("additionalChars");
-    const priceDisplay = document.getElementById("priceDisplay");
+      const commissionType = document.getElementById("commissionType");
+      const additionalChars = document.getElementById("additionalChars");
+      const priceDisplay = document.getElementById("priceDisplay");
 
     function updatePrice() {
-        let basePrice = 0;
-        switch (commissionType.value) {
-          case "Headshot": basePrice = 10; break;
-          case "Half Body": basePrice = 25; break;
-          case "Full Body": basePrice = 35; break;
-        }
+      const basePrices = {
+        "Headshot": 10,
+        "Half Body": 25,
+        "Full Body": 35
+      };
 
-        const extraChars = parseInt(additionalChars.value) || 0;
-        const total = basePrice + (extraChars * 10);
-        priceDisplay.textContent = basePrice ? `Estimated Total: $${total}` : "";
+      const selectedType = commissionType.value;
+      const extraCharacters = parseInt(additionalChars.value) || 0;
+      const extraPrice = extraCharacters * 10;
+
+      if (basePrices[selectedType]) {
+        const total = basePrices[selectedType] + extraPrice;
+        priceDisplay.textContent = `Estimated Price: $${total}`;
+      } else {
+        priceDisplay.textContent = '';
       }
+    }
 
     commissionType.addEventListener("change", updatePrice);
     additionalChars.addEventListener("change", updatePrice);
 
-    // Initialize price display on page load
-    document.addEventListener("DOMContentLoaded", updatePrice);
-
-    </script>
+    
+    
+  </script>
 
     <section class="newsletter">
       <h2>Stay in the Loop! 🌸</h2>
