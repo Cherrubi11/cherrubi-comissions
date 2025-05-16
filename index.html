@@ -367,20 +367,11 @@
     });
 
 
-
-
-
-
-
-
-
-
-
       const musicToggle = document.getElementById('musicToggle');
       const bgMusic = document.getElementById('bgMusic');
       let isPlaying = false;
 
-      musicToggle.addEventListener('click', () => {
+    musicToggle.addEventListener('click', () => {
         if (!isPlaying) {
           bgMusic.play();
           musicToggle.textContent = '🔇 Pause Music';
@@ -391,13 +382,7 @@
         isPlaying = !isPlaying;
       });
 
-
-
-
-
-
-
-      const reviews = [
+    const reviews = [
       // {
         // name: "Luna#0321",
         // text: "Absolutely love how my OC turned out! Will commission again 💖"
@@ -424,7 +409,7 @@
 
     document.addEventListener("DOMContentLoaded", displayReviews);
 
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const emailInput = document.getElementById('newsletterEmail');
         const message = document.getElementById('newsletterMessage');
@@ -440,31 +425,29 @@
         }
         });
 
-        const commissionType = document.getElementById("commissionType");
-        const additionalChars = document.getElementById("additionalChars");
-        const priceDisplay = document.getElementById("priceDisplay");
-        const form = document.getElementById("commissionForm");
+    const commissionType = document.getElementById("commissionType");
+    const additionalChars = document.getElementById("additionalChars");
+    const priceDisplay = document.getElementById("priceDisplay");
 
-        function updatePrice() {
+    function updatePrice() {
         let basePrice = 0;
         switch (commissionType.value) {
-            case "Headshot": basePrice = 10; break;
-            case "Half Body": basePrice = 25; break;
-            case "Full Body": basePrice = 35; break;
+          case "Headshot": basePrice = 10; break;
+          case "Half Body": basePrice = 25; break;
+          case "Full Body": basePrice = 35; break;
         }
 
         const extraChars = parseInt(additionalChars.value) || 0;
-        const extrasTotal = [...extras].reduce((total, checkbox) => {
-            return checkbox.checked ? total + parseInt(checkbox.value) : total;
-        }, 0);
-
-        const total = basePrice + (extraChars * 10) + extrasTotal;
+        const total = basePrice + (extraChars * 10);
         priceDisplay.textContent = basePrice ? `Estimated Total: $${total}` : "";
-        }
+      }
 
-        commissionType.addEventListener("change", updatePrice);
-        additionalChars.addEventListener("change", updatePrice);
-        extras.forEach(opt => opt.addEventListener("change", updatePrice));
+    commissionType.addEventListener("change", updatePrice);
+    additionalChars.addEventListener("change", updatePrice);
+
+    // Initialize price display on page load
+    document.addEventListener("DOMContentLoaded", updatePrice);
+    
     </script>
 
     <section class="newsletter">
