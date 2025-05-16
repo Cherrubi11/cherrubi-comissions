@@ -45,6 +45,22 @@
   <div class="status" id="statusDisplay"></div>
 
   <script>
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+
+      // Optional: update aria-pressed for accessibility
+      const isDark = document.body.classList.contains('dark-mode');
+      darkModeToggle.setAttribute('aria-pressed', isDark);
+    });
+
+
+
+
+
+
     const orders = {
       "cherrubi#1234": "In Progress",
       "emily#5678": "Waiting for payment",
