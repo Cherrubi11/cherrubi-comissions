@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leave a Review</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding: 40px;
+      color: #6b4a6f;
+    }
+    input, textarea {
+      width: 80%;
+      max-width: 400px;
+      margin: 10px auto;
+      display: block;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #f58cae;
+      font-size: 1rem;
+    }
+    button {
+      background: #f58cae;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .thankyou {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #905370;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💌 Leave a Review!</h1>
+  <p>Tell me what you thought about your commission 💕</p>
+
+  <form id="reviewForm">
+    <input type="text" id="name" placeholder="Your name or username" required />
+    <textarea id="review" rows="5" placeholder="Your review" required></textarea>
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <div class="thankyou" id="thankyou">Thank you! Your review was sent 💖</div>
+
+  <script>
+    const form = document.getElementById("reviewForm");
+    const thankYou = document.getElementById("thankyou");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Simulate sending the review (to a server or your email if you want to add that later)
+      form.style.display = "none";
+      thankYou.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
