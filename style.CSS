@@ -1,83 +1,38 @@
-<<<<<<< HEAD
-body.dark-mode {
-  background: #1e1e1e;
-  color: #fcd6ec;
-}
-
-body.dark-mode header h1 {
-  color: #ff99c8;
-}
-
-body.dark-mode header p,
-body.dark-mode label,
-body.dark-mode h2,
-body.dark-mode .commission-info p,
-body.dark-mode li,
-body.dark-mode footer {
-  color: #ffc6e0;
-}
-
-body.dark-mode form {
-  background: #2a2a2a;
-}
-
-body.dark-mode input,
-body.dark-mode textarea,
-body.dark-mode select {
-  background: #333;
-  color: #fcd6ec;
-  border-color: #ff99c8;
-}
-
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-=======
-body.dark-mode {
-  background: #1e1e1e;
-  color: #fcd6ec;
-}
-
-body.dark-mode header h1 {
-  color: #ff99c8;
-}
-
-body.dark-mode header p,
-body.dark-mode label,
-body.dark-mode h2,
-body.dark-mode .commission-info p,
-body.dark-mode li,
-body.dark-mode footer {
-  color: #ffc6e0;
-}
-
-body.dark-mode form {
-  background: #2a2a2a;
-}
-
-body.dark-mode input,
-body.dark-mode textarea,
-body.dark-mode select {
-  background: #333;
-  color: #fcd6ec;
-  border-color: #ff99c8;
-}
-
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
 body {
   font-family: 'Outfit', sans-serif;
 }
 
+body.dark-mode {
+  background: #1e1e1e;
+  color: #fcd6ec;
+}
 
+body.dark-mode header h1 {
+  color: #ff99c8;
+}
 
->>>>>>> eeffc39926d343dae5e088047013208f0e79a880
+body.dark-mode header p,
+body.dark-mode label,
+body.dark-mode h2,
+body.dark-mode .commission-info p,
+body.dark-mode li,
+body.dark-mode footer {
+  color: #ffc6e0;
+}
 
+body.dark-mode form {
+  background: #2a2a2a;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #333;
+  color: #fcd6ec;
+  border-color: #ff99c8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
