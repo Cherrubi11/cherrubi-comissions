@@ -446,35 +446,39 @@
         }
         });
 
-      const commissionType = document.getElementById("commissionType");
-      const additionalChars = document.getElementById("additionalChars");
-      const priceDisplay = document.getElementById("priceDisplay");
-
-    function updatePrice() {
-      const basePrices = {
-        "Headshot": 10,
-        "Half Body": 25,
-        "Full Body": 35
-      };
-
-      const selectedType = commissionType.value;
-      const extraCharacters = parseInt(additionalChars.value) || 0;
-      const extraPrice = extraCharacters * 10;
-
-      if (basePrices[selectedType]) {
-        const total = basePrices[selectedType] + extraPrice;
-        priceDisplay.textContent = `Estimated Price: $${total}`;
-      } else {
-        priceDisplay.textContent = '';
-      }
-    }
-
-    commissionType.addEventListener("change", updatePrice);
-    additionalChars.addEventListener("change", updatePrice);
-
-    
-    
   </script>
+
+<script>
+  const commissionType = document.getElementById('commissionType');
+  const additionalChars = document.getElementById('additionalChars');
+  const priceDisplay = document.getElementById('priceDisplay');
+
+  function calculatePrice() {
+    let basePrice = 0;
+    const type = commissionType.value;
+    const extras = parseInt(additionalChars.value);
+
+    // Set base price based on commission type
+    if (type === 'Headshot') basePrice = 10;
+    else if (type === 'Half Body') basePrice = 15;
+    else if (type === 'Full Body') basePrice = 20;
+
+    const extraPrice = extras * 10;
+    const total = basePrice + extraPrice;
+
+    if (type) {
+      priceDisplay.textContent = `Estimated Price: $${total}`;
+    } else {
+      priceDisplay.textContent = '';
+    }
+  }
+
+  commissionType.addEventListener('change', calculatePrice);
+  additionalChars.addEventListener('change', calculatePrice);
+</script>
+
+
+
 
   <section class="newsletter">
       <h2>Stay in the Loop! 🌸</h2>
