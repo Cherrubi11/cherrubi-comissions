@@ -321,6 +321,14 @@
 
 
     <script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+
+      const isDark = document.body.classList.contains('dark-mode');
+      darkModeToggle.setAttribute('aria-pressed', isDark);
+    });
 
 
       const langText = {
