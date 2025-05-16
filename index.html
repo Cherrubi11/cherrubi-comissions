@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -493,3 +494,500 @@
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cherrubi's Commissions!</title>
+  <style>
+    .reviews {
+    background: #fff0f6;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(245, 140, 174, 0.2);
+    margin-bottom: 40px;
+  }
+
+  .reviews h2 {
+    color: #a8417a;
+    margin-bottom: 20px;
+  }
+
+  .reviews-container {
+    display: grid;
+    gap: 20px;
+  }
+
+  .review {
+    background: white;
+    border: 2px solid #f58cae;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    text-align: left;
+    color: #6b4a6f;
+  }
+
+    body {
+      background: #ffe4ec; /* pastel pink */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #6b4a6f;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #f58cae;
+      letter-spacing: 4px;
+    }
+    header p {
+      font-style: italic;
+      color: #b85c87;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    h2 {
+      color: #a8417a;
+      border-bottom: 2px solid #f58cae;
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+    }
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .portfolio img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 20px rgba(245, 140, 174, 0.5);
+    }
+    .commission-info p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    form {
+      background: #fff0f6;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #905477;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #f58cae;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    button {
+      background: #f58cae;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #d65a89;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #7a5c76;
+    }
+      /* DARK MODE STYLES */
+    body.dark-mode {
+        background: #1e1e1e;
+        color: #fcd6ec;
+    }
+
+    body.dark-mode header h1 {
+        color: #ff99c8;
+    }
+
+    body.dark-mode header p,
+    body.dark-mode label,
+    body.dark-mode h2,
+    body.dark-mode .commission-info p,
+    body.dark-mode li,
+    body.dark-mode footer {
+        color: #ffc6e0;
+    }
+
+    body.dark-mode form {
+        background: #2a2a2a;
+    }
+
+    body,
+    header,
+    form,
+    h1,
+    h2,
+    p,
+    label,
+    li,
+    footer {
+        transition: background 0.4s ease, color 0.4s ease;
+    }
+
+  </style>
+</head>
+
+
+
+
+
+<body>
+
+    <section class="social-media">
+    <h2>Follow Me!</h2>
+    <div class="social-icons">
+        <a href="https://instagram.com/cherrubi11" target="_blank" aria-label="Instagram">
+        <img src="images/insta.png" width="100" height="auto" />
+        </a>
+        <a href="https://tiktok.com/@ch3rrubi" target="_blank" aria-label="TikTok">
+        <img src="images/tiktok.png" width="100" height="auto" />
+        </a>
+    </div>
+    </section>
+
+    <select id="languageSwitcher">
+    <option value="en">🇺🇸 English</option>
+    <option value="es">🇪🇸 Español</option>
+    </select>
+
+
+    <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
+
+    <button id="musicToggle">🎧 Play Music</button>
+  <audio id="bgMusic" loop>
+    <source src="sounds/lofi.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+
+    <header>
+        <h1>Commission Your Art!</h1>
+        <p>Custom digital art made just for you 🌸</p>
+        
+          <nav>
+            <a href="status.html">Status</a>
+    </header>
+   
+    <section class="reviews">
+      <h2>💬 What Customers Are Saying</h2>
+      <div id="reviewsContainer" class="reviews-container">
+        <!-- Reviews will appear here -->
+      </div>
+    </section>
+
+    <section class="portfolio">
+        <h2>My Work</h2>
+        <div class="portfolio">
+        <img src="images/1.png"/>
+        <img src="images/2.png" />
+        <img src="images/3.png" />
+        <img src="images/4.png" />
+        </div>
+    </section>
+
+    <section class="commission-info">
+        <h2>How It Works</h2>
+        <p>I create digital art commissions based on your ideas! You can request:</p>
+        <ul>
+        <li>Fanart</li>
+        <li>Oc illustrations</li>
+        <li>Chibis</li>
+        </ul>
+        <p>Here are some things I do NOT draw:</p>
+        <ul>
+        <li>Heavy gore</li>
+        <li>Furries (Animal qualities on humans are allowerd!)</li>
+        <li>If I feel uncomfortable with the request, I will decline</li>
+        </ul>
+        <p>Prices start at $10. It usually takes me around 1-2 days, but can take up to a week depending on complexity.</p>
+        <p> I might post the finished piece on my socials, If you feel uncomfortable with this, message me and I'll keep it off my accounts.</p>
+    </section>
+
+    <section class="contact">
+        <p>Request now and pay once I accept! I only take upfront payemnts, or half now half when i'm done.</p>
+    <h2>Request a Commission</h2>
+    <form id="commissionForm" action="https://formspree.io/f/mrbqrwoe" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="commissionType">Commission Type</label>
+        <select id="commissionType" name="commissionType" required>
+        <option value="">Select one</option>
+        <option value="Headshot">Headshot</option>
+        <option value="Half Body">Half Body</option>
+        <option value="Full Body">Full Body</option>
+        </select>
+
+        <label for="additionalChars">Additional Characters (optional)</label>
+        <select id="additionalChars" name="additionalChars">
+        <option value="0">None</option>
+        <option value="1">1 (+$10)</option>
+        <option value="2">2 (+$20)</option>
+        <option value="3">3 (+$30)</option>
+        <option value="4">4 (+$40)</option>
+        </select>
+
+        <p id="priceDisplay" style="font-weight: bold; color: #a8417a; margin-top: -10px; margin-bottom: 20px;">
+        <!-- total price will show here -->
+        </p>
+
+        <label for="details">Describe Your Request</label>
+        <textarea id="details" name="details" rows="5" required></textarea>
+
+        <button type="submit">Send Request</button>
+    </form>
+    </section>
+
+
+    <script>
+
+
+      const langText = {
+      en: {
+        title: "Commission Your Art!",
+        subtitle: "Custom digital art made just for you 🌸",
+        submit: "Send Request",
+        follow: "Follow Me!",
+        work: "My Work",
+        howItWorks: "How It Works",
+        newsletter: "Stay in the Loop! 🌸",
+        subscribe: "Subscribe"
+      },
+      es: {
+        title: "¡Encarga tu arte!",
+        subtitle: "Arte digital personalizado solo para ti 🌸",
+        submit: "Enviar solicitud",
+        follow: "¡Sígueme!",
+        work: "Mi Trabajo",
+        howItWorks: "Cómo Funciona",
+        newsletter: "¡Mantente al tanto! 🌸",
+        subscribe: "Suscribirse"
+      }
+    };
+
+    document.getElementById("languageSwitcher").addEventListener("change", e => {
+      const lang = e.target.value;
+      document.querySelector("header h1").textContent = langText[lang].title;
+      document.querySelector("header p").textContent = langText[lang].subtitle;
+      document.querySelector("button[type='submit']").textContent = langText[lang].submit;
+      document.querySelector(".social-media h2").textContent = langText[lang].follow;
+      document.querySelector(".portfolio h2").textContent = langText[lang].work;
+      document.querySelector(".commission-info h2").textContent = langText[lang].howItWorks;
+      document.querySelector(".newsletter h2").textContent = langText[lang].newsletter;
+      document.querySelector(".newsletter button").textContent = langText[lang].subscribe;
+    });
+
+
+
+
+
+
+
+
+
+
+
+      const musicToggle = document.getElementById('musicToggle');
+      const bgMusic = document.getElementById('bgMusic');
+      let isPlaying = false;
+
+      musicToggle.addEventListener('click', () => {
+        if (!isPlaying) {
+          bgMusic.play();
+          musicToggle.textContent = '🔇 Pause Music';
+        } else {
+          bgMusic.pause();
+          musicToggle.textContent = '🎧 Play Music';
+        }
+        isPlaying = !isPlaying;
+      });
+
+
+
+
+
+
+
+      const reviews = [
+      // {
+        // name: "Luna#0321",
+        // text: "Absolutely love how my OC turned out! Will commission again 💖"
+      // },
+      // {
+        // name: "Mochi#8842",
+        // text: "Fast, super cute art and very friendly!! 10/10 🌸"
+      // },
+      // {
+        // name: "Ghosti#4567",
+        // text: "Perfect style and communication! Thank you so much 💕"
+      // }
+    ];
+
+    function displayReviews() {
+      const container = document.getElementById("reviewsContainer");
+      reviews.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "review";
+        div.innerHTML = `<strong>${r.name}</strong><p>${r.text}</p>`;
+        container.appendChild(div);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", displayReviews);
+
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('newsletterEmail');
+        const message = document.getElementById('newsletterMessage');
+        
+        // Simple validation + fake success message (replace with real backend or service later)
+        if(emailInput.value.includes('@')) {
+            message.style.color = 'green';
+            message.textContent = `Thanks for subscribing, ${emailInput.value}! 🌸`;
+            emailInput.value = '';
+        } else {
+            message.style.color = 'red';
+            message.textContent = 'Please enter a valid email address.';
+        }
+        });
+
+        const commissionType = document.getElementById("commissionType");
+        const additionalChars = document.getElementById("additionalChars");
+        const priceDisplay = document.getElementById("priceDisplay");
+        const form = document.getElementById("commissionForm");
+
+        function updatePrice() {
+        let basePrice = 0;
+        switch (commissionType.value) {
+            case "Headshot": basePrice = 10; break;
+            case "Half Body": basePrice = 25; break;
+            case "Full Body": basePrice = 35; break;
+        }
+
+        const extraChars = parseInt(additionalChars.value) || 0;
+        const extrasTotal = [...extras].reduce((total, checkbox) => {
+            return checkbox.checked ? total + parseInt(checkbox.value) : total;
+        }, 0);
+
+        const total = basePrice + (extraChars * 10) + extrasTotal;
+        priceDisplay.textContent = basePrice ? `Estimated Total: $${total}` : "";
+        }
+
+        commissionType.addEventListener("change", updatePrice);
+        additionalChars.addEventListener("change", updatePrice);
+        extras.forEach(opt => opt.addEventListener("change", updatePrice));
+    </script>
+
+    <section class="newsletter">
+    <h2>Stay in the Loop! 🌸</h2>
+    <p>Sign up for updates on commissions, new art, and special offers.</p>
+    <form id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+    </form>
+    <p id="newsletterMessage" style="margin-top:10px;"></p>
+    </section>
+
+
+
+
+
+
+
+
+
+    <footer>
+        &copy; 2025 Cherrubi.
+    </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Dark Mode Toggle
+        document.getElementById("darkModeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        });
+
+        // Commission price updates
+        const commissionType = document.getElementById("commissionType");
+        const additionalChars = document.getElementById("additionalChars");
+        const priceDisplay = document.getElementById("priceDisplay");
+        const extras = document.querySelectorAll(".extra-option");
+
+        function updatePrice() {
+        let basePrice = 0;
+        switch (commissionType.value) {
+            case "Headshot": basePrice = 10; break;
+            case "Half Body": basePrice = 25; break;
+            case "Full Body": basePrice = 35; break;
+        }
+
+        const extraChars = parseInt(additionalChars.value) || 0;
+        const extrasTotal = [...extras].reduce((total, checkbox) => {
+            return checkbox.checked ? total + parseInt(checkbox.value) : total;
+        }, 0);
+
+        const total = basePrice + (extraChars * 10) + extrasTotal;
+        priceDisplay.textContent = basePrice ? `Estimated Total: $${total}` : "";
+        }
+
+        commissionType.addEventListener("change", updatePrice);
+        additionalChars.addEventListener("change", updatePrice);
+        extras.forEach(opt => opt.addEventListener("change", updatePrice));
+
+        // Newsletter
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('newsletterEmail');
+        const message = document.getElementById('newsletterMessage');
+        
+        if(emailInput.value.includes('@')) {
+            message.style.color = 'green';
+            message.textContent = `Thanks for subscribing, ${emailInput.value}! 🌸`;
+            emailInput.value = '';
+        } else {
+            message.style.color = 'red';
+            message.textContent = 'Please enter a valid email address.';
+        }
+        });
+    });
+    </script>
+
+</body>
+</html>
+>>>>>>> eeffc39926d343dae5e088047013208f0e79a880

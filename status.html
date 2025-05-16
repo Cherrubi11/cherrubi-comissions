@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,3 +68,74 @@
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Commission Status Tracker</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Comic Sans MS', cursive;
+      padding: 40px;
+      color: #6b4a6f;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 2px solid #f58cae;
+      margin-bottom: 20px;
+      width: 250px;
+    }
+    button {
+      background: #f58cae;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .status {
+      margin-top: 30px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Track Your Commission Status</h1>
+  <p>Enter your name or order code below!</p>
+
+  <input type="text" id="orderInput" placeholder="e.g. Cherrubi#1234" />
+  <button onclick="checkStatus()">Check Status</button>
+
+  <div class="status" id="statusDisplay"></div>
+
+  <script>
+    const orders = {
+      "cherrubi#1234": "In Progress",
+      "emily#5678": "Waiting for payment",
+      "alex#9999": "Completed 🎉",
+      // Add customers names
+    };
+
+    function checkStatus() {
+      const input = document.getElementById("orderInput").value.toLowerCase().trim();
+      const status = orders[input];
+      const display = document.getElementById("statusDisplay");
+
+      if (status) {
+        display.textContent = `Status: ${status}`;
+      } else {
+        display.textContent = "Order not found. Please double-check your input!";
+      }
+    }
+  </script>
+
+</body>
+</html>
+>>>>>>> eeffc39926d343dae5e088047013208f0e79a880
