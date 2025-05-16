@@ -245,13 +245,13 @@
       <a href="status.html" style="color:#f58cae; font-weight:bold; text-decoration:none;">Status</a>
     </nav>
   </header>
-  
+
   <section class="reviews">
     <h2>💬 What Customers Are Saying</h2>
     <div id="reviewsContainer" class="reviews-container"></div>
   </section>
 
-  <script>
+  <!-- <script>
     const reviews = [
       // { name: "Alex", review: "Loved the commission! Super happy 😍" },
       // { name: "Jamie", review: "Fast and great communication, 10/10!" },
@@ -265,7 +265,7 @@
       div.innerHTML = `<strong>${r.name}:</strong> <p>${r.review}</p>`;
       container.appendChild(div);
     });
-  </script>
+  </script> -->
 
   <style>
     .single-review {
@@ -435,7 +435,7 @@
         e.preventDefault();
         const emailInput = document.getElementById('newsletterEmail');
         const message = document.getElementById('newsletterMessage');
-        
+
         // Simple validation + fake success message (replace with real backend or service later)
         if(emailInput.value.includes('@')) {
             message.style.color = 'green';
