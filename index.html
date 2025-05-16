@@ -246,12 +246,36 @@
     </nav>
   </header>
   
-    <section class="reviews">
-      <h2>💬 What Customers Are Saying</h2>
-      <div id="reviewsContainer" class="reviews-container">
-        <!-- Reviews will appear here -->
-      </div>
-    </section>
+  <section class="reviews">
+    <h2>💬 What Customers Are Saying</h2>
+    <div id="reviewsContainer" class="reviews-container"></div>
+  </section>
+
+  <script>
+    const reviews = [
+      // { name: "Alex", review: "Loved the commission! Super happy 😍" },
+      // { name: "Jamie", review: "Fast and great communication, 10/10!" },
+      // { name: "Sam", review: "Beautiful artwork, will order again 💖" }
+    ];
+
+    const container = document.getElementById("reviewsContainer");
+    reviews.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "single-review";
+      div.innerHTML = `<strong>${r.name}:</strong> <p>${r.review}</p>`;
+      container.appendChild(div);
+    });
+  </script>
+
+  <style>
+    .single-review {
+      background: #ffe0f0;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+
 
   <section class="portfolio">
       <h2>My Work</h2>
