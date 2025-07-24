@@ -6,7 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cherrubi's Commissions!</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+  <script src="https://unpkg.com/kursor"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new kursor({
+        type: 2, // cute cursor w/ sparkle trail
+        color: '#f58cae'
+      });
+    });
+  </script>
   <style>
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border: 10px dotted #ffc6e7;
+      pointer-events: none;
+      z-index: 999;
+    }
     body {
       background: #ffe4ec; /* pastel pink */
       font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -55,7 +73,8 @@
     }
     .portfolio img:hover {
       transform: scale(1.05);
-      box-shadow: 0 12px 20px rgba(245, 140, 174, 0.5);
+      filter: drop-shadow(0 0 5px #ffb3d9);
+      border: 3px dashed #ff69b4;
     }
     .commission-info p,
     .commission-info ul {
@@ -106,33 +125,7 @@
     button:hover {
       background: #d65a89;
     }
-    .reviews {
-      background: #fff0f6;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(245, 140, 174, 0.2);
-      margin-bottom: 40px;
-      transition: background 0.4s ease;
-    }
-    .reviews h2 {
-      color: #a8417a;
-      margin-bottom: 20px;
-      transition: color 0.4s ease;
-    }
-    .reviews-container {
-      display: grid;
-      gap: 20px;
-    }
-    .review {
-      background: white;
-      border: 2px solid #f58cae;
-      padding: 15px;
-      border-radius: 15px;
-      font-size: 1rem;
-      text-align: left;
-      color: #6b4a6f;
-      transition: background 0.4s ease, color 0.4s ease;
-    }
+
     .social-icons a img {
       width: 100px;
       height: auto;
@@ -142,7 +135,6 @@
     .social-icons a img:hover {
       transform: scale(1.1);
     }
-    #languageSwitcher,
     #darkModeToggle,
     #musicToggle {
       margin: 10px 10px 30px 0;
@@ -156,7 +148,6 @@
       color: #905477;
       transition: background 0.3s ease, color 0.3s ease;
     }
-    #languageSwitcher:hover,
     #darkModeToggle:hover,
     #musicToggle:hover {
       background: #f58cae;
@@ -213,6 +204,7 @@
 
 
 <body>
+  <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
 
   <section class="social-media">
     <h2>Follow Me!</h2>
@@ -226,61 +218,45 @@
     </div>
   </section>
 
-  <select id="languageSwitcher" aria-label="Language Switcher">
-    <option value="en">🇺🇸 English</option>
-    <option value="es">🇪🇸 Español</option>
-  </select>
-
   <button id="darkModeToggle" aria-pressed="false">Toggle Dark Mode</button>
   <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
+  <div id="nowPlaying" style="font-size: 0.9rem; color: #b85c87; margin-top: 10px;">
+    Now playing: 🎧 lofi.mp3
+  </div>
+
 
   <audio id="bgMusic" loop>
     <source src="sounds/lofi.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
+  <marquee behavior="scroll" direction="left" scrollamount="6" style="background:#fff0f6; padding:10px; color:#a8417a; font-weight:bold;">
+  💖 Now taking commissions! 💖
+  </marquee>
 
-  <header>
-    <h1>Commission Your Art!</h1>
-    <p>Custom digital art made just for you 🌸</p>
-    <nav>
-      <li><a href="donate.html"style="color:#f58cae; font-weight:bold; text-decoration:none;">Donate</a></li>
-      <a href="status.html" style="color:#f58cae; font-weight:bold; text-decoration:none;">Status</a>
-    </nav>
-  </header>
-
-  <section class="reviews">
-    <h2>💬 What Customers Are Saying</h2>
-    <div id="reviewsContainer" class="reviews-container"></div>
-  </section>
-
-  <!-- <script>
-    const reviews = [
-      // { name: "Alex", review: "Loved the commission! Super happy 😍" },
-      // { name: "Jamie", review: "Fast and great communication, 10/10!" },
-      // { name: "Sam", review: "Beautiful artwork, will order again 💖" }
-    ];
-
-    const container = document.getElementById("reviewsContainer");
-    reviews.forEach(r => {
-      const div = document.createElement("div");
-      div.className = "single-review";
-      div.innerHTML = `<strong>${r.name}:</strong> <p>${r.review}</p>`;
-      container.appendChild(div);
-    });
-  </script> -->
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNHd4MGRkdnN6enAyZmI1c2V6dGdzN254OWRlbDY5a3A3c3VqMTVxeCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/ue7Oh8WdVspgI/source.gif" id="mascot" alt="Mascot" />
 
   <style>
-    .single-review {
-      background: #ffe0f0;
-      margin: 10px;
-      padding: 10px;
-      border-radius: 10px;
+    #mascot {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 100px;
+      z-index: 1000;
+      pointer-events: none;
     }
   </style>
 
 
+  <header>
+    <h1>Commission Your Art!</h1>
+    <nav>
+      <li><a href="donate.html"style="color:#f58cae; font-weight:bold; text-decoration:none;">Donate</a></li>
+    </nav>
+  </header>
+
+
   <section class="portfolio">
-      <h2>My Work</h2>
+      <h2>My Work <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" style="width: 20px;"></h2>
       <div class="portfolio">
       <img src="images/1.png"/>
       <img src="images/2.png" />
@@ -343,48 +319,44 @@
     </form>
   </section>
 
+  <div class="chatbox">
+    <p><strong>@Cherrubi:</strong> Taking commissions rn 💕</p>
+  </div>
+
+  <style>
+  .chatbox {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #fff0f6;
+    border: 2px solid #f58cae;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+  </style>
+
+
 
   <script>
+    const form = document.getElementById('commissionForm');
+    const inputs = form.querySelectorAll('input, textarea, select');
+
+    inputs.forEach(input => {
+      const saved = localStorage.getItem(input.name);
+      if (saved) input.value = saved;
+
+      input.addEventListener('input', () => {
+        localStorage.setItem(input.name, input.value);
+      });
+    });
     const toggle = document.getElementById('darkModeToggle');
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       const isDark = document.body.classList.contains('dark-mode');
       toggle.setAttribute('aria-pressed', isDark);
-    });
-
-    const langText = {
-      en: {
-        title: "Commission Your Art!",
-        subtitle: "Custom digital art made just for you 🌸",
-        submit: "Send Request",
-        follow: "Follow Me!",
-        work: "My Work",
-        howItWorks: "How It Works",
-        newsletter: "Stay in the Loop! 🌸",
-        subscribe: "Subscribe"
-      },
-      es: {
-        title: "¡Encarga tu arte!",
-        subtitle: "Arte digital personalizado solo para ti 🌸",
-        submit: "Enviar solicitud",
-        follow: "¡Sígueme!",
-        work: "Mi Trabajo",
-        howItWorks: "Cómo Funciona",
-        newsletter: "¡Mantente al tanto! 🌸",
-        subscribe: "Suscribirse"
-      }
-    };
-
-    document.getElementById("languageSwitcher").addEventListener("change", e => {
-      const lang = e.target.value;
-      document.querySelector("header h1").textContent = langText[lang].title;
-      document.querySelector("header p").textContent = langText[lang].subtitle;
-      document.querySelector("button[type='submit']").textContent = langText[lang].submit;
-      document.querySelector(".social-media h2").textContent = langText[lang].follow;
-      document.querySelector(".portfolio h2").textContent = langText[lang].work;
-      document.querySelector(".commission-info h2").textContent = langText[lang].howItWorks;
-      document.querySelector(".newsletter h2").textContent = langText[lang].newsletter;
-      document.querySelector(".newsletter button").textContent = langText[lang].subscribe;
     });
 
       const musicToggle = document.getElementById('musicToggle');
@@ -402,52 +374,19 @@
         isPlaying = !isPlaying;
       });
 
-    const reviews = [
-      // {
-        // name: "Luna#0321",
-        // text: "Absolutely love how my OC turned out! Will commission again 💖"
-      // },
-      // {
-        // name: "Mochi#8842",
-        // text: "Fast, super cute art and very friendly!! 10/10 🌸"
-      // },
-      // {
-        // name: "Ghosti#4567",
-        // text: "Perfect style and communication! Thank you so much 💕"
-      // }
-    ];
-
-    function displayReviews() {
-      const container = document.getElementById("reviewsContainer");
-      reviews.forEach(r => {
-        const div = document.createElement("div");
-        div.className = "review";
-        div.innerHTML = `<strong>${r.name}</strong><p>${r.text}</p>`;
-        container.appendChild(div);
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", displayReviews);
-
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const emailInput = document.getElementById('newsletterEmail');
-        const message = document.getElementById('newsletterMessage');
-
-        // Simple validation + fake success message (replace with real backend or service later)
-        if(emailInput.value.includes('@')) {
-            message.style.color = 'green';
-            message.textContent = `Thanks for subscribing, ${emailInput.value}! 🌸`;
-            emailInput.value = '';
-        } else {
-            message.style.color = 'red';
-            message.textContent = 'Please enter a valid email address.';
-        }
-        });
-
   </script>
 
 <script>
+  const clickSound = document.getElementById('btnSound');
+  const cuteButtons = document.querySelectorAll('button, .cute-btn, input[type=\"submit\"]');
+
+  cuteButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    });
+  });
+  
   const commissionType = document.getElementById('commissionType');
   const additionalChars = document.getElementById('additionalChars');
   const priceDisplay = document.getElementById('priceDisplay');
@@ -475,20 +414,6 @@
   commissionType.addEventListener('change', calculatePrice);
   additionalChars.addEventListener('change', calculatePrice);
 </script>
-
-
-
-
-  <section class="newsletter">
-      <h2>Stay in the Loop! 🌸</h2>
-      <p>Sign up for updates on commissions, new art, and special offers.</p>
-      <form id="newsletterForm">
-          <input type="email" id="newsletterEmail" placeholder="Your email" required />
-          <button type="submit">Subscribe</button>
-      </form>
-      <p id="newsletterMessage" style="margin-top:10px;"></p>
-  </section>
-
 
 
 
