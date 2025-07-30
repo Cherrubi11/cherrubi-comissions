@@ -17,6 +17,26 @@
     });
   </script>
   <style>
+    #like-btn {
+    background-color: #ffcce5;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #like-btn:hover {
+    background-color: #ff99c8;
+    transform: scale(1.05);
+  }
+
+  #like-count {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
     .robux-alert {
     background: #fff0f6;
     border: 2px dashed #f58cae;
@@ -224,10 +244,15 @@
       border-color: #d65a89;
     }
   </style>
+
+
 </head>
 
 
 <body>
+  <button id="like-btn">💗 Like this website</button>
+  <p>Likes: <span id="like-count">0</span></p>  
+
   <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
 
   <section class="social-media">
@@ -308,7 +333,7 @@
     <li>Furries (Animal qualities on humans are allowed!)</li>
     <li>If I feel uncomfortable with the request, I will decline</li>
     </ul>
-    <p>Prices start at $10. It usually takes me around 1 day, but it can take up to a week depending on the complexity and how busy I am >-<.</p>
+    <p>Prices start at $10. It usually takes me around 1 day, but it can take up to a week depending on the complexity/my schedule.</p>
     <p> I might post the finished piece on my socials. If you feel uncomfortable with this, message me, and I'll delete it from my accounts.</p>
   </section>
 
@@ -420,6 +445,13 @@
   </script>
 
 <script>
+  const likeBtn = document.getElementById("like-btn");
+
+  likeBtn.addEventListener("click", () => {
+    likeBtn.classList.add("clicked");
+    likeBtn.innerHTML = "💖 Thanks for liking!";
+    likeBtn.disabled = true;
+  });
   const clickSound = document.getElementById('btnSound');
   const cuteButtons = document.querySelectorAll('button, .cute-btn, input[type=\"submit\"]');
 
@@ -478,6 +510,8 @@
   commissionType.addEventListener('change', calculatePrice);
   additionalChars.addEventListener('change', calculatePrice);
   paymentMethod.addEventListener('change', calculatePrice);
+
+  
 </script>
 
 
@@ -485,6 +519,63 @@
   <footer>
         &copy; 2025 Cherrubi.
   </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBTStgXrYiPgwv7ehITvObhuWwAP0ZJQ10",
+    authDomain: "art-like-button.firebaseapp.com",
+    databaseURL: "https://art-like-button-default-rtdb.firebaseio.com",
+    projectId: "art-like-button",
+    storageBucket: "art-like-button.firebasestorage.app",
+    messagingSenderId: "448177284978",
+    appId: "1:448177284978:web:5f71416588684a3cee5feb"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const likeRef = ref(db, "likes");
+  const likeBtn = document.getElementById("like-btn");
+  const likeCount = document.getElementById("like-count");
+
+  // Update UI when likes change in realtime
+  onValue(likeRef, (snapshot) => {
+    const likes = snapshot.val() ?? 0;
+    likeCount.textContent = likes;
+  });
+
+  // On page load, disable button if already liked
+  window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("hasLiked")) {
+      likeBtn.disabled = true;
+      likeBtn.textContent = "💖 Thanks for liking!";
+    }
+  });
+
+  // Handle like button click
+  likeBtn.addEventListener("click", async () => {
+    if (localStorage.getItem("hasLiked")) {
+      alert("You already liked this!");
+      return;
+    }
+
+    try {
+      const snapshot = await get(likeRef);
+      const currentLikes = snapshot.val() ?? 0;
+
+      await set(likeRef, currentLikes + 1);
+
+      localStorage.setItem("hasLiked", "true");
+      likeBtn.disabled = true;
+      likeBtn.textContent = "💖 Thanks for liking!";
+    } catch (error) {
+      console.error("Error updating likes:", error);
+      alert("Oops, something went wrong. Try again later.");
+    }
+  });
+</script>
 
 </body>
 </html>
