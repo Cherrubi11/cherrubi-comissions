@@ -17,6 +17,30 @@
     });
   </script>
   <style>
+    .robux-alert {
+    background: #fff0f6;
+    border: 2px dashed #f58cae;
+    color: #a8417a;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    margin: 20px auto;
+    border-radius: 15px;
+    animation: popIn 0.6s ease-in-out;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(245, 140, 174, 0.2);
+  }
+  .robux-text {
+    color: #ff6699;
+    text-shadow: 0 0 4px #ffddee;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
     body::before {
       content: '';
       position: fixed;
@@ -254,6 +278,11 @@
     </nav>
   </header>
 
+  <div class="robux-alert">
+    <p>✨ <strong>New!</strong> Now taking <span class="robux-text">Robux</span> as payment too! ✨</p>
+  </div>
+
+
 
   <section class="portfolio">
       <h2>My Work <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" style="width: 20px;"></h2>
@@ -287,6 +316,13 @@
       <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
     <h2>Request a Commission</h2>
     <form id="commissionForm" action="https://formspree.io/f/mrbqrwoe" method="POST">
+      <label for="paymentMethod">Payment Method</label>
+      <select id="paymentMethod" name="paymentMethod" required>
+        <option value="">Select one</option>
+        <option value="usd">USD ($)</option>
+        <option value="robux">Robux (💸 Discount!)</option>
+      </select>
+
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" required />
 
@@ -397,29 +433,51 @@
   const commissionType = document.getElementById('commissionType');
   const additionalChars = document.getElementById('additionalChars');
   const priceDisplay = document.getElementById('priceDisplay');
+  const paymentMethod = document.getElementById('paymentMethod');
 
   function calculatePrice() {
-    let basePrice = 0;
-    const type = commissionType.value;
-    const extras = parseInt(additionalChars.value);
+  const type = commissionType.value;
+  const extras = parseInt(additionalChars.value);
+  const method = paymentMethod.value;
 
-    // Set base price based on commission type
-    if (type === 'Headshot') basePrice = 10;
-    else if (type === 'Half Body') basePrice = 25;
-    else if (type === 'Full Body') basePrice = 35;
+  let total = 0;
+  let robuxPrice = 0;
 
-    const extraPrice = extras * 10;
-    const total = basePrice + extraPrice;
-
-    if (type) {
-      priceDisplay.textContent = `Estimated Price: $${total}`;
-    } else {
-      priceDisplay.textContent = '';
-    }
+  // Base prices (in Robux)
+  if (type === 'Headshot') {
+    robuxPrice = 500;
+    total = 10; // USD for headshot
+  } else if (type === 'Half Body') {
+    robuxPrice = 1000;
+    total = 25; // USD for half body
+  } else if (type === 'Full Body') {
+    robuxPrice = 2200;
+    total = 35; // USD for full body
   }
+
+  // Add extra characters cost (same for both USD and Robux)
+  const extraPrice = extras * 10;
+  const extraRobux = extras * 100; // Each extra character is 100 Robux
+  total += extraPrice;
+  robuxPrice += extraRobux;
+
+  if (!type || !method) {
+    priceDisplay.textContent = '';
+    return;
+  }
+
+  if (method === 'robux') {
+    priceDisplay.textContent = `Estimated Price: ${robuxPrice} Robux`;
+  } else {
+    priceDisplay.textContent = `Estimated Price: $${total}`;
+  }
+}
+
+
 
   commissionType.addEventListener('change', calculatePrice);
   additionalChars.addEventListener('change', calculatePrice);
+  paymentMethod.addEventListener('change', calculatePrice);
 </script>
 
 
