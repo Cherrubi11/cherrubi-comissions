@@ -17,6 +17,30 @@
     });
   </script>
   <style>
+
+
+  .pfp-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+  }
+
+  .pfp-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ffcce5;
+    box-shadow: 0 4px 8px rgba(245, 140, 174, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .pfp-container img:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 6px 12px rgba(245, 140, 174, 0.6);
+  }
+
     #like-btn {
     background-color: #ffcce5;
     border: none;
@@ -578,4 +602,12 @@
 </script>
 
 </body>
+
+<div class="pfp-container">
+  <img src="images/pfp.png" alt="Profile Picture" />
+</div>
+
+
+
+
 </html>
