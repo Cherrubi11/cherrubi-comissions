@@ -9,15 +9,108 @@
   <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
   <script src="https://unpkg.com/kursor"></script>
   <script>
+    function applySeasonalTheme() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      let themeName = '';
+
+      if (month === 10) {
+        document.documentElement.style.setProperty('--primary-color', '#ff6b35');
+        document.documentElement.style.setProperty('--secondary-color', '#8A615F');
+        document.documentElement.style.setProperty('--accent-color', '#9d4edd');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#2d1b2e');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#1a0f1c');
+        document.documentElement.style.setProperty('--light-bg', '#3d2940');
+        document.documentElement.style.setProperty('--border-color', '#ff6b35');
+        document.documentElement.style.setProperty('--text-color', '#f0b8d4');
+        themeName = '🎃 Halloween';
+      }
+      else if (month === 12 && day <= 25) {
+        document.documentElement.style.setProperty('--primary-color', '#c41e3a');
+        document.documentElement.style.setProperty('--secondary-color', '#165b33');
+        document.documentElement.style.setProperty('--accent-color', '#ffd700');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#f0f8ff');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#e6f3ff');
+        document.documentElement.style.setProperty('--light-bg', '#fff5f5');
+        document.documentElement.style.setProperty('--border-color', '#c41e3a');
+        document.documentElement.style.setProperty('--text-color', '#165b33');
+        themeName = '🎄 Christmas';
+      }
+      else if (month === 2 && day <= 14) {
+        document.documentElement.style.setProperty('--primary-color', '#ff1493');
+        document.documentElement.style.setProperty('--secondary-color', '#ff69b4');
+        document.documentElement.style.setProperty('--accent-color', '#ff85c1');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#ffe4f1');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#fff0f8');
+        document.documentElement.style.setProperty('--light-bg', '#fff0f9');
+        document.documentElement.style.setProperty('--border-color', '#ff1493');
+        document.documentElement.style.setProperty('--text-color', '#a8417a');
+        themeName = '💕 Valentine\'s Day';
+      }
+      else if (month >= 3 && month <= 5) {
+        document.documentElement.style.setProperty('--primary-color', '#98d8c8');
+        document.documentElement.style.setProperty('--secondary-color', '#f7b2bd');
+        document.documentElement.style.setProperty('--accent-color', '#ffd89b');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#e8f5e9');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#fff9e6');
+        document.documentElement.style.setProperty('--light-bg', '#f0fff4');
+        document.documentElement.style.setProperty('--border-color', '#98d8c8');
+        document.documentElement.style.setProperty('--text-color', '#5a7a6f');
+        themeName = '🌸 Spring';
+      }
+      else if (month >= 6 && month <= 8) {
+        document.documentElement.style.setProperty('--primary-color', '#ffa07a');
+        document.documentElement.style.setProperty('--secondary-color', '#20b2aa');
+        document.documentElement.style.setProperty('--accent-color', '#ffd700');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#fff5e6');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#e6f7ff');
+        document.documentElement.style.setProperty('--light-bg', '#fffaf0');
+        document.documentElement.style.setProperty('--border-color', '#ffa07a');
+        document.documentElement.style.setProperty('--text-color', '#4a6b6b');
+        themeName = '☀️ Summer';
+      }
+      else {
+        document.documentElement.style.setProperty('--primary-color', '#f58cae');
+        document.documentElement.style.setProperty('--secondary-color', '#a8417a');
+        document.documentElement.style.setProperty('--accent-color', '#ff99c8');
+        document.documentElement.style.setProperty('--bg-gradient-start', '#ffe4ec');
+        document.documentElement.style.setProperty('--bg-gradient-end', '#fff0f6');
+        document.documentElement.style.setProperty('--light-bg', '#fff0f6');
+        document.documentElement.style.setProperty('--border-color', '#ffc6e7');
+        document.documentElement.style.setProperty('--text-color', '#6b4a6f');
+        themeName = '💖 Default';
+      }
+
+      // Update the seasonal badge
+      const badge = document.getElementById('seasonal-badge');
+      if (badge) {
+        badge.textContent = themeName;
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
+      applySeasonalTheme();
+      
+      const seasonalColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--primary-color').trim();
       new kursor({
-        type: 2, // cute cursor w/ sparkle trail
-        color: '#f58cae'
+        type: 2,
+        color: seasonalColor
       });
     });
   </script>
   <style>
-
+  :root {
+    --primary-color: #f58cae;
+    --secondary-color: #a8417a;
+    --accent-color: #ff99c8;
+    --bg-gradient-start: #ffe4ec;
+    --bg-gradient-end: #fff0f6;
+    --light-bg: #fff0f6;
+    --border-color: #ffc6e7;
+    --text-color: #6b4a6f;
+  }
 
   .pfp-container {
     position: fixed;
@@ -31,9 +124,9 @@
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #ffcce5;
+    border: 3px solid var(--border-color);
     box-shadow: 0 4px 8px rgba(245, 140, 174, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
   }
 
   .pfp-container img:hover {
@@ -41,8 +134,8 @@
     box-shadow: 0 6px 12px rgba(245, 140, 174, 0.6);
   }
 
-    #like-btn {
-    background-color: #ffcce5;
+  #like-btn {
+    background-color: var(--accent-color);
     border: none;
     border-radius: 15px;
     padding: 12px 20px;
@@ -52,19 +145,20 @@
   }
 
   #like-btn:hover {
-    background-color: #ff99c8;
+    background-color: var(--primary-color);
     transform: scale(1.05);
   }
 
   #like-count {
     font-weight: bold;
     font-size: 1.1rem;
+    color: var(--text-color);
   }
 
-    .robux-alert {
-    background: #fff0f6;
-    border: 2px dashed #f58cae;
-    color: #a8417a;
+  .robux-alert {
+    background: var(--light-bg);
+    border: 2px dashed var(--primary-color);
+    color: var(--secondary-color);
     text-align: center;
     font-weight: bold;
     font-size: 1.1rem;
@@ -74,10 +168,12 @@
     animation: popIn 0.6s ease-in-out;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(245, 140, 174, 0.2);
+    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
   }
+  
   .robux-text {
-    color: #ff6699;
-    text-shadow: 0 0 4px #ffddee;
+    color: var(--accent-color);
+    text-shadow: 0 0 4px var(--light-bg);
   }
 
   @keyframes popIn {
@@ -85,197 +181,343 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border: 10px dotted #ffc6e7;
-      pointer-events: none;
-      z-index: 999;
-    }
-    body {
-      background: #ffe4ec; /* pastel pink */
-      font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #6b4a6f;
-      padding: 40px;
-      max-width: 900px;
-      margin: auto;
-      transition: background 0.4s ease, color 0.4s ease;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    header h1 {
-      font-size: 3rem;
-      color: #f58cae;
-      letter-spacing: 4px;
-      transition: color 0.4s ease;
-    }
-    header p {
-      font-style: italic;
-      color: #b85c87;
-      transition: color 0.4s ease;
-    }
-    section {
-      margin-bottom: 50px;
-    }
-    h2 {
-      color: #a8417a;
-      border-bottom: 2px solid #f58cae;
-      padding-bottom: 6px;
-      margin-bottom: 20px;
-      transition: color 0.4s ease;
-    }
-    .portfolio {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-    }
-    .portfolio img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    .portfolio img:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 5px #ffb3d9);
-      border: 3px dashed #ff69b4;
-    }
-    .commission-info p,
-    .commission-info ul {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #6b4a6f;
-      transition: color 0.4s ease;
-    }
-    ul {
-      margin-top: 0;
-      padding-left: 20px;
-    }
-    form {
-      background: #fff0f6;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
-      transition: background 0.4s ease, color 0.4s ease;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #905477;
-      transition: color 0.4s ease;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #f58cae;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      resize: vertical;
-    }
-    button {
-      background: #f58cae;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 30px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #d65a89;
-    }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 10px dotted var(--border-color);
+    pointer-events: none;
+    z-index: 999;
+    transition: border-color 0.4s ease;
+  }
+  
+  body {
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    letter-spacing: 4px;
+    transition: color 0.4s ease;
+  }
+  
+  header p {
+    font-style: italic;
+    color: var(--secondary-color);
+    transition: color 0.4s ease;
+  }
+  
+  section {
+    margin-bottom: 50px;
+  }
+  
+  h2 {
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    transition: color 0.4s ease, border-color 0.4s ease;
+  }
+  
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+  
+  .portfolio img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .portfolio img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 5px var(--accent-color));
+    border: 3px dashed var(--primary-color);
+  }
+  
+  .commission-info p,
+  .commission-info ul {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: color 0.4s ease;
+  }
+  
+  .info-box {
+    background: var(--light-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease, transform 0.3s ease;
+  }
 
-    .social-icons a img {
-      width: 100px;
-      height: auto;
-      margin-right: 20px;
-      transition: transform 0.3s ease;
+  .info-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .info-box h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    transition: color 0.4s ease;
+  }
+
+  .info-box p {
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+
+  .info-box ul {
+    margin: 8px 0;
+  }
+
+  .info-box strong {
+    color: var(--secondary-color);
+    transition: color 0.4s ease;
+  }
+  
+  ul {
+    margin-top: 0;
+    padding-left: 20px;
+  }
+  
+  form {
+    background: var(--light-bg);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(245, 140, 174, 0.3);
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    transition: color 0.4s ease;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.4s ease;
+  }
+  
+  button {
+    background: var(--primary-color);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: var(--secondary-color);
+  }
+
+  .social-icons a img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icons a img:hover {
+    transform: scale(1.1);
+  }
+  
+  #darkModeToggle,
+  #musicToggle {
+    margin: 10px 10px 30px 0;
+    padding: 8px 15px;
+    border-radius: 12px;
+    border: 2px solid var(--primary-color);
+    background: white;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    color: var(--secondary-color);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.4s ease;
+  }
+  
+  #darkModeToggle:hover,
+  #musicToggle:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--secondary-color);
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    transition: color 0.4s ease;
+  }
+
+  body.dark-mode {
+    background: #1e1e1e;
+    color: #fcd6ec;
+  }
+  
+  body.dark-mode header h1 {
+    color: var(--accent-color);
+  }
+  
+  body.dark-mode header p,
+  body.dark-mode label,
+  body.dark-mode h2,
+  body.dark-mode .commission-info p,
+  body.dark-mode ul,
+  body.dark-mode footer {
+    color: #ffc6e0;
+  }
+  
+  body.dark-mode form {
+    background: #2a2a2a;
+  }
+  
+  body.dark-mode #darkModeToggle,
+  body.dark-mode #musicToggle {
+    background: #2a2a2a;
+    color: #ffc6e0;
+    border-color: var(--accent-color);
+  }
+  
+  body.dark-mode #darkModeToggle:hover,
+  body.dark-mode #musicToggle:hover {
+    background: var(--accent-color);
+    color: #1e1e1e;
+    border-color: var(--secondary-color);
+  }
+
+  .shop-link {
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-decoration: underline dotted var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.4s ease;
+  }
+
+  .shop-link:hover {
+    transform: scale(1.1);
+    background: var(--light-bg);
+    color: var(--secondary-color);
+  }
+
+  #mascot {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .chatbox {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--light-bg);
+    border: 2px solid var(--primary-color);
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+
+  #nowPlaying {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 10px;
+    transition: color 0.4s ease;
+  }
+
+  #priceDisplay {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: color 0.4s ease;
+  }
+
+  marquee {
+    background: var(--light-bg);
+    padding: 10px;
+    color: var(--secondary-color);
+    font-weight: bold;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  #seasonal-badge {
+    position: fixed;
+    top: 140px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    animation: slideIn 0.5s ease-out;
+    transition: background 0.4s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100px);
+      opacity: 0;
     }
-    .social-icons a img:hover {
-      transform: scale(1.1);
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
-    #darkModeToggle,
-    #musicToggle {
-      margin: 10px 10px 30px 0;
-      padding: 8px 15px;
-      border-radius: 12px;
-      border: 2px solid #f58cae;
-      background: white;
-      cursor: pointer;
-      font-family: 'Outfit', sans-serif;
-      font-weight: bold;
-      color: #905477;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    #darkModeToggle:hover,
-    #musicToggle:hover {
-      background: #f58cae;
-      color: white;
-      border-color: #d65a89;
-    }
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #7a5c76;
-      transition: color 0.4s ease;
-    }
-    /* DARK MODE STYLES */
-    body.dark-mode {
-      background: #1e1e1e;
-      color: #fcd6ec;
-    }
-    body.dark-mode header h1 {
-      color: #ff99c8;
-    }
-    body.dark-mode header p,
-    body.dark-mode label,
-    body.dark-mode h2,
-    body.dark-mode .commission-info p,
-    body.dark-mode ul,
-    body.dark-mode .reviews h2,
-    body.dark-mode .review,
-    body.dark-mode footer {
-      color: #ffc6e0;
-    }
-    body.dark-mode form {
-      background: #2a2a2a;
-    }
-    body.dark-mode .reviews {
-      background: #2a2a2a;
-    }
-    body.dark-mode #languageSwitcher,
-    body.dark-mode #darkModeToggle,
-    body.dark-mode #musicToggle {
-      background: #2a2a2a;
-      color: #ffc6e0;
-      border-color: #ff99c8;
-    }
-    body.dark-mode #languageSwitcher:hover,
-    body.dark-mode #darkModeToggle:hover,
-    body.dark-mode #musicToggle:hover {
-      background: #ff99c8;
-      color: #1e1e1e;
-      border-color: #d65a89;
-    }
+  }
   </style>
-
-
 </head>
 
-
 <body>
+  <div id="seasonal-badge">💖 Default</div>
+  
   <button id="like-btn">💗 Like this website</button>
-  <p>Likes: <span id="like-count">0</span></p>  
+  <p>Likes: <span id="like-count">0</span></p>
 
   <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
 
@@ -293,37 +535,23 @@
 
   <button id="darkModeToggle" aria-pressed="false">Toggle Dark Mode</button>
   <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
-  <div id="nowPlaying" style="font-size: 0.9rem; color: #b85c87; margin-top: 10px;">
-    Now playing: 🎧 lofi.mp3
-  </div>
-
+  <div id="nowPlaying">Now playing: 🎧 lofi.mp3</div>
 
   <audio id="bgMusic" loop>
     <source src="sounds/lofi.mp3" type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
-  <marquee behavior="scroll" direction="left" scrollamount="6" style="background:#fff0f6; padding:10px; color:#a8417a; font-weight:bold;">
-  💖 Now taking commissions! 💖
+  
+  <marquee behavior="scroll" direction="left" scrollamount="6">
+    💖 Now taking commissions! 💖
   </marquee>
 
   <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNHd4MGRkdnN6enAyZmI1c2V6dGdzN254OWRlbDY5a3A3c3VqMTVxeCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/ue7Oh8WdVspgI/source.gif" id="mascot" alt="Mascot" />
 
-  <style>
-    #mascot {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 100px;
-      z-index: 1000;
-      pointer-events: none;
-    }
-  </style>
-
-
   <header>
     <h1>Commission Your Art!</h1>
     <nav>
-      <li><a href="donate.html"style="color:#f58cae; font-weight:bold; text-decoration:none;">Donate</a></li>
+      <li><a href="donate.html" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Donate</a></li>
     </nav>
   </header>
 
@@ -331,38 +559,63 @@
     <p>✨ <strong>New!</strong> Now taking <span class="robux-text">Robux</span> as payment too! ✨</p>
   </div>
 
-
-
   <section class="portfolio">
-      <h2>My Work <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" style="width: 20px;"></h2>
-      <div class="portfolio">
+    <h2>My Work <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" style="width: 20px;"></h2>
+    <div class="portfolio">
       <img src="images/1.png"/>
       <img src="images/2.png" />
       <img src="images/3.png" />
       <img src="images/4.png" />
-      </div>
+    </div>
   </section>
 
   <section class="commission-info">
     <h2>How It Works</h2>
-    <p>I create digital art commissions based on your ideas! You can request:</p>
-    <ul>
-    <li>Fanart</li>
-    <li>Oc illustrations</li>
-     <li>Chibis</li>
-    </ul>
-    <p>Here are some things I do NOT draw:</p>
-    <ul>
-    <li>Heavy gore</li>
-    <li>Furries (Animal qualities on humans are allowed!)</li>
-    <li>If I feel uncomfortable with the request, I will decline</li>
-    </ul>
-    <p>Prices start at $10. It usually takes me around 1 day, but it can take up to a week depending on the complexity/my schedule.</p>
-    <p> I might post the finished piece on my socials. If you feel uncomfortable with this, message me, and I'll delete it from my accounts.</p>
+    
+    <div class="info-box">
+      <h3>📝 What I Draw</h3>
+      <ul>
+        <li>Fanart</li>
+        <li>OC illustrations</li>
+        <li>Chibis</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>🚫 What I Don't Draw</h3>
+      <ul>
+        <li>Heavy gore</li>
+        <li>Furries (Animal qualities on humans are allowed!)</li>
+        <li>Anything that makes me uncomfortable</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>✨ Revisions</h3>
+      <p>Each order includes <strong>2 free revisions</strong>.</p>
+      <p>Revisions are for minor changes (colors, small tweaks). Major changes (like changing the whole design) may require a new order.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>💰 Refund Policy</h3>
+      <p>All purchases are <strong>final</strong>, as these are digital products.</p>
+      <p>If you experience a technical issue (file not downloading, corrupt file), <strong>contact me within 3 days</strong> and I'll fix it or replace it.</p>
+      <p>If I fail to deliver the order within the promised timeframe, a full refund will be issued.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>⏱️ Timeline & Pricing</h3>
+      <p>Prices start at <strong>$10</strong>. Delivery usually takes 1-2 days, but can take up to a week depending on complexity and my schedule.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>📱 Social Media Posting</h3>
+      <p>I might post the finished piece on my socials. If you feel uncomfortable with this, message me and I'll delete it from my accounts.</p>
+    </div>
   </section>
 
   <section class="contact">
-      <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
+    <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
     <h2>Request a Commission</h2>
     <form id="commissionForm" action="https://formspree.io/f/mrbqrwoe" method="POST">
       <label for="paymentMethod">Payment Method</label>
@@ -372,42 +625,36 @@
         <option value="robux">Robux (💸 Discount!)</option>
       </select>
 
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required />
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
 
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" required />
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required />
 
-        <label for="commissionType">Commission Type</label>
-        <select id="commissionType" name="commissionType" required>
+      <label for="commissionType">Commission Type</label>
+      <select id="commissionType" name="commissionType" required>
         <option value="">Select one</option>
         <option value="Headshot">Headshot</option>
         <option value="Half Body">Half Body</option>
         <option value="Full Body">Full Body</option>
-        </select>
+      </select>
 
-        <label for="commissionType">Art Type</label>
-        <select id="artType" name="artType" required>
-        <option value="">Select one</option>
-        <option value="Headshot">Anime</option>
-        <option value="Half Body">Semi Realism</option>
-        </select>
 
-        <label for="additionalChars">Additional Characters (optional)</label>
-        <select id="additionalChars" name="additionalChars">
+      <label for="additionalChars">Additional Characters (optional)</label>
+      <select id="additionalChars" name="additionalChars">
         <option value="0">None</option>
         <option value="1">1 (+$10)</option>
         <option value="2">2 (+$20)</option>
         <option value="3">3 (+$30)</option>
         <option value="4">4 (+$40)</option>
-        </select>
+      </select>
 
-       <p id="priceDisplay" style="margin-top: 10px; font-weight: bold; color: #ff69b4;"></p>
+      <p id="priceDisplay"></p>
 
-        <label for="details">Describe Your Request</label>
-        <textarea id="details" name="details" rows="5" required></textarea>
+      <label for="details">Describe Your Request</label>
+      <textarea id="details" name="details" rows="5" required></textarea>
 
-        <button type="submit">Send Request</button>
+      <button type="submit">Send Request</button>
     </form>
   </section>
 
@@ -415,22 +662,9 @@
     <p><strong>@Cherrubi:</strong> Taking commissions rn 💕</p>
   </div>
 
-  <style>
-  .chatbox {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: #fff0f6;
-    border: 2px solid #f58cae;
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-  </style>
-
-
+  <div class="pfp-container">
+    <img src="images/pfp.png" alt="Profile Picture" />
+  </div>
 
   <script>
     const form = document.getElementById('commissionForm');
@@ -444,6 +678,7 @@
         localStorage.setItem(input.name, input.value);
       });
     });
+
     const toggle = document.getElementById('darkModeToggle');
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
@@ -451,163 +686,132 @@
       toggle.setAttribute('aria-pressed', isDark);
     });
 
-      const musicToggle = document.getElementById('musicToggle');
-      const bgMusic = document.getElementById('bgMusic');
-      let isPlaying = false;
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
 
     musicToggle.addEventListener('click', () => {
-        if (!isPlaying) {
-          bgMusic.play();
-          musicToggle.textContent = '🔇 Pause Music';
-        } else {
-          bgMusic.pause();
-          musicToggle.textContent = '🎧 Play Music';
-        }
-        isPlaying = !isPlaying;
-      });
+      if (!isPlaying) {
+        bgMusic.play();
+        musicToggle.textContent = '🔇 Pause Music';
+      } else {
+        bgMusic.pause();
+        musicToggle.textContent = '🎧 Play Music';
+      }
+      isPlaying = !isPlaying;
+    });
 
+    const clickSound = document.getElementById('btnSound');
+    const cuteButtons = document.querySelectorAll('button, .cute-btn, input[type="submit"]');
+
+    cuteButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
+
+    const commissionType = document.getElementById('commissionType');
+    const additionalChars = document.getElementById('additionalChars');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const paymentMethod = document.getElementById('paymentMethod');
+
+    function calculatePrice() {
+      const type = commissionType.value;
+      const extras = parseInt(additionalChars.value);
+      const method = paymentMethod.value;
+
+      let total = 0;
+      let robuxPrice = 0;
+
+      if (type === 'Headshot') {
+        robuxPrice = 500;
+        total = 10;
+      } else if (type === 'Half Body') {
+        robuxPrice = 1000;
+        total = 25;
+      } else if (type === 'Full Body') {
+        robuxPrice = 2200;
+        total = 35;
+      }
+
+      const extraPrice = extras * 10;
+      const extraRobux = extras * 100;
+      total += extraPrice;
+      robuxPrice += extraRobux;
+
+      if (!type || !method) {
+        priceDisplay.textContent = '';
+        return;
+      }
+
+      if (method === 'robux') {
+        priceDisplay.textContent = `Estimated Price: ${robuxPrice} Robux`;
+      } else {
+        priceDisplay.textContent = `Estimated Price: $${total}`;
+      }
+    }
+
+    commissionType.addEventListener('change', calculatePrice);
+    additionalChars.addEventListener('change', calculatePrice);
+    paymentMethod.addEventListener('change', calculatePrice);
   </script>
 
-<script>
-  const likeBtn = document.getElementById("like-btn");
+  <footer>&copy; 2025 Cherrubi.</footer>
 
-  likeBtn.addEventListener("click", () => {
-    likeBtn.classList.add("clicked");
-    likeBtn.innerHTML = "💖 Thanks for liking!";
-    likeBtn.disabled = true;
-  });
-  const clickSound = document.getElementById('btnSound');
-  const cuteButtons = document.querySelectorAll('button, .cute-btn, input[type=\"submit\"]');
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  cuteButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      clickSound.currentTime = 0;
-      clickSound.play();
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTStgXrYiPgwv7ehITvObhuWwAP0ZJQ10",
+      authDomain: "art-like-button.firebaseapp.com",
+      databaseURL: "https://art-like-button-default-rtdb.firebaseio.com",
+      projectId: "art-like-button",
+      storageBucket: "art-like-button.firebasestorage.app",
+      messagingSenderId: "448177284978",
+      appId: "1:448177284978:web:5f71416588684a3cee5feb"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const likeRef = ref(db, "likes");
+    const likeBtn = document.getElementById("like-btn");
+    const likeCount = document.getElementById("like-count");
+
+    onValue(likeRef, (snapshot) => {
+      const likes = snapshot.val() ?? 0;
+      likeCount.textContent = likes;
     });
-  });
-  
-  const commissionType = document.getElementById('commissionType');
-  const additionalChars = document.getElementById('additionalChars');
-  const priceDisplay = document.getElementById('priceDisplay');
-  const paymentMethod = document.getElementById('paymentMethod');
 
-  function calculatePrice() {
-  const type = commissionType.value;
-  const extras = parseInt(additionalChars.value);
-  const method = paymentMethod.value;
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("hasLiked")) {
+        likeBtn.disabled = true;
+        likeBtn.textContent = "💖 Thanks for liking!";
+      }
+    });
 
-  let total = 0;
-  let robuxPrice = 0;
+    likeBtn.addEventListener("click", async () => {
+      if (localStorage.getItem("hasLiked")) {
+        alert("You already liked this!");
+        return;
+      }
 
-  // Base prices (in Robux)
-  if (type === 'Headshot') {
-    robuxPrice = 500;
-    total = 10; // USD for headshot
-  } else if (type === 'Half Body') {
-    robuxPrice = 1000;
-    total = 25; // USD for half body
-  } else if (type === 'Full Body') {
-    robuxPrice = 2200;
-    total = 35; // USD for full body
-  }
+      try {
+        const snapshot = await get(likeRef);
+        const currentLikes = snapshot.val() ?? 0;
 
-  // Add extra characters cost (same for both USD and Robux)
-  const extraPrice = extras * 10;
-  const extraRobux = extras * 100; // Each extra character is 100 Robux
-  total += extraPrice;
-  robuxPrice += extraRobux;
+        await set(likeRef, currentLikes + 1);
 
-  if (!type || !method) {
-    priceDisplay.textContent = '';
-    return;
-  }
-
-  if (method === 'robux') {
-    priceDisplay.textContent = `Estimated Price: ${robuxPrice} Robux`;
-  } else {
-    priceDisplay.textContent = `Estimated Price: $${total}`;
-  }
-}
-
-
-
-  commissionType.addEventListener('change', calculatePrice);
-  additionalChars.addEventListener('change', calculatePrice);
-  paymentMethod.addEventListener('change', calculatePrice);
-
-  
-</script>
-
-
-
-  <footer>
-        &copy; 2025 Cherrubi.
-  </footer>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBTStgXrYiPgwv7ehITvObhuWwAP0ZJQ10",
-    authDomain: "art-like-button.firebaseapp.com",
-    databaseURL: "https://art-like-button-default-rtdb.firebaseio.com",
-    projectId: "art-like-button",
-    storageBucket: "art-like-button.firebasestorage.app",
-    messagingSenderId: "448177284978",
-    appId: "1:448177284978:web:5f71416588684a3cee5feb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  const likeRef = ref(db, "likes");
-  const likeBtn = document.getElementById("like-btn");
-  const likeCount = document.getElementById("like-count");
-
-  // Update UI when likes change in realtime
-  onValue(likeRef, (snapshot) => {
-    const likes = snapshot.val() ?? 0;
-    likeCount.textContent = likes;
-  });
-
-  // On page load, disable button if already liked
-  window.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("hasLiked")) {
-      likeBtn.disabled = true;
-      likeBtn.textContent = "💖 Thanks for liking!";
-    }
-  });
-
-  // Handle like button click
-  likeBtn.addEventListener("click", async () => {
-    if (localStorage.getItem("hasLiked")) {
-      alert("You already liked this!");
-      return;
-    }
-
-    try {
-      const snapshot = await get(likeRef);
-      const currentLikes = snapshot.val() ?? 0;
-
-      await set(likeRef, currentLikes + 1);
-
-      localStorage.setItem("hasLiked", "true");
-      likeBtn.disabled = true;
-      likeBtn.textContent = "💖 Thanks for liking!";
-    } catch (error) {
-      console.error("Error updating likes:", error);
-      alert("Oops, something went wrong. Try again later.");
-    }
-  });
-</script>
-
+        localStorage.setItem("hasLiked", "true");
+        likeBtn.disabled = true;
+        likeBtn.textContent = "💖 Thanks for liking!";
+      } catch (error) {
+        console.error("Error updating likes:", error);
+        alert("Oops, something went wrong. Try again later.");
+      }
+    });
+  </script>
 </body>
-
-<div class="pfp-container">
-  <img src="images/pfp.png" alt="Profile Picture" />
-</div>
-
-
-
-
 </html>
