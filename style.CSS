@@ -57,24 +57,29 @@ img {
   background: #ffa6c9;
 }
 
+
+
+
+/* Flipbooks grid like portfolio */
+.flipbook-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  margin-bottom: 50px;
+}
+
+/* Flipbook container remains the same size */
 .flipbook-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 2rem auto;
-  perspective: 1000px;
-}
-
-.flipbook {
   width: 100%;
-  height: 100%;
+  max-width: 220px;
+  height: 220px;
+  perspective: 1000px;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s;
 }
 
-.page {
-  position: absolute;
+/* Pages inside flipbook */
+.flipbook .page {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -83,24 +88,29 @@ img {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.page img {
+.flipbook .page img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-button#prev, button#next {
-  position: absolute;
+/* Flipbook buttons */
+.flipbook-container button {
   top: 50%;
   transform: translateY(-50%);
   background: #ffe6f2;
   border: none;
   border-radius: 50%;
-  padding: 10px 15px;
+  padding: 8px 12px;
+  font-size: 1rem;
   cursor: pointer;
-  font-size: 1.2rem;
 }
 
-button#prev { left: -50px; }
-button#next { right: -50px; }
+/* Responsive tweak for mobile */
+@media screen and (max-width: 600px) {
+  .flipbook-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
 
