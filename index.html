@@ -112,27 +112,6 @@
     --text-color: #6b4a6f;
   }
 
-  .pfp-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1100;
-  }
-
-  .pfp-container img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(245, 140, 174, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.4s ease;
-  }
-
-  .pfp-container img:hover {
-    transform: scale(1.08) rotate(3deg);
-    box-shadow: 0 6px 12px rgba(245, 140, 174, 0.6);
-  }
 
   #like-btn {
     background-color: var(--accent-color);
@@ -433,19 +412,6 @@
     pointer-events: none;
   }
 
-  .chatbox {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: var(--light-bg);
-    border: 2px solid var(--primary-color);
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    z-index: 999;
-    transition: background 0.4s ease, border-color 0.4s ease;
-  }
 
   #nowPlaying {
     font-size: 0.9rem;
@@ -595,6 +561,19 @@
       <h3>📱 Social Media Posting</h3>
       <p>I might post the finished piece on my socials. If you feel uncomfortable with this, message me and I'll delete it from my accounts.</p>
     </div>
+    
+      <div class="info-box">
+        <h3>🧸 Chibi Commissions</h3>
+        <p>Cute, simplified mini versions of your favorite characters!</p>
+        <ul>
+          <li><strong>Headshot:</strong> $8</li>
+          <li><strong>Half Body:</strong> $12</li>
+          <li><strong>Full Body:</strong> $15</li>
+        </ul>
+        <p>Includes soft shading and a transparent background. Extra props or complex designs may add a small fee.</p>
+    </div>
+
+    
   </section>
 
   <section class="contact">
@@ -620,6 +599,9 @@
         <option value="Headshot">Headshot</option>
         <option value="Half Body">Half Body</option>
         <option value="Full Body">Full Body</option>
+        <option value="Chibi Headshot">Chibi Headshot</option>
+        <option value="Chibi Half Body">Chibi Half Body</option>
+        <option value="Chibi Full Body">Chibi Full Body</option>
       </select>
 
 
@@ -640,14 +622,6 @@
       <button type="submit">Send Request</button>
     </form>
   </section>
-
-  <div class="chatbox">
-    <p><strong>@Cherrubi:</strong> Taking commissions rn 💕</p>
-  </div>
-
-  <div class="pfp-container">
-    <img src="images/pfp.png" alt="Profile Picture" />
-  </div>
 
   <script>
     const form = document.getElementById('commissionForm');
@@ -716,6 +690,16 @@
       } else if (type === 'Full Body') {
         robuxPrice = 2200;
         total = 35;
+      }
+      else if (type === 'Chibi Headshot') {
+        robuxPrice = 400;
+        total = 8;
+      } else if (type === 'Chibi Half Body') {
+        robuxPrice = 600;
+        total = 12;
+      } else if (type === 'Chibi Full Body') {
+        robuxPrice = 750;
+        total = 15;
       }
 
       const extraPrice = extras * 10;
