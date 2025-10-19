@@ -70,11 +70,19 @@ img {
 
 .flipbook-container {
   width: 100%;
-  max-width: 220px;
-  height: 220px;
+  max-width: 180px; /* smaller than 220px */
+  height: 180px; /* square like portfolio */
   perspective: 1000px;
   position: relative;
 }
+
+.flipbook .page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* changed from cover to contain */
+  padding: 5px; /* optional: gives a little white space around images */
+}
+
 
 .flipbook .page {
   width: 100%;
@@ -85,11 +93,6 @@ img {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.flipbook .page img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .flipbook-container button {
   top: 50%;
