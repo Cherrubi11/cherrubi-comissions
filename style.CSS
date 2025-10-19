@@ -60,7 +60,6 @@ img {
 
 
 
-/* Flipbooks grid like portfolio */
 .flipbook-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -69,7 +68,6 @@ img {
   margin-bottom: 50px;
 }
 
-/* Flipbook container remains the same size */
 .flipbook-container {
   width: 100%;
   max-width: 220px;
@@ -78,7 +76,6 @@ img {
   position: relative;
 }
 
-/* Pages inside flipbook */
 .flipbook .page {
   width: 100%;
   height: 100%;
@@ -94,7 +91,6 @@ img {
   object-fit: cover;
 }
 
-/* Flipbook buttons */
 .flipbook-container button {
   top: 50%;
   transform: translateY(-50%);
@@ -106,7 +102,7 @@ img {
   cursor: pointer;
 }
 
-/* Responsive tweak for mobile */
+/* Mobile responsive */
 @media screen and (max-width: 600px) {
   .flipbook-gallery {
     grid-template-columns: 1fr;
