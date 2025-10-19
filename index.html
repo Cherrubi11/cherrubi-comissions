@@ -518,6 +518,46 @@
     </div>
   </section>
 
+  <section id="chibi-work">
+    <h2>📖 Chibi Gallery</h2>
+    <div class="flipbook-container">
+      <div class="flipbook">
+        <div class="page"><img src="images/chibi1.png" alt="Chibi 1"></div>
+        <div class="page"><img src="images/chibi2.png" alt="Chibi 2"></div>
+        <div class="page"><img src="images/chibi3.png" alt="Chibi 3"></div>
+        <!-- Add more pages here -->
+      </div>
+      <button id="prev">◀</button>
+      <button id="next">▶</button>
+    </div>
+  </section>
+
+  <section id="usd-commissions">
+  <h2>💵 Completed $35 Commissions</h2>
+  <div class="flipbook-container">
+    <div class="flipbook">
+      <div class="page"><img src="images/35-1.png" alt="USD Commission 1"></div>
+      
+    </div>
+    <button class="prev-btn">◀</button>
+    <button class="next-btn">▶</button>
+  </div>
+</section>
+
+  <section id="robux-commissions">
+    <h2>💸 Completed 1000 Robux Commissions</h2>
+    <div class="flipbook-container">
+      <div class="flipbook">
+        <div class="page"><img src="images/robux-1.png" alt="Robux Commission 1"></div>
+        
+      </div>
+      <button class="prev-btn">◀</button>
+      <button class="next-btn">▶</button>
+    </div>
+  </section>
+  
+
+
   <section class="commission-info">
     <h2>How It Works</h2>
     
@@ -779,6 +819,31 @@
         alert("Oops, something went wrong. Try again later.");
       }
     });
+
+
+    document.querySelectorAll('.flipbook-container').forEach(container => {
+      const flipbook = container.querySelector('.flipbook');
+      const pages = flipbook.querySelectorAll('.page');
+      const nextBtn = container.querySelector('.next-btn') || container.querySelector('#next');
+      const prevBtn = container.querySelector('.prev-btn') || container.querySelector('#prev');
+      let currentPage = 0;
+    
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < pages.length - 1) {
+          pages[currentPage].style.transform = 'rotateY(-180deg)';
+          currentPage++;
+        }
+      });
+    
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 0) {
+          currentPage--;
+          pages[currentPage].style.transform = 'rotateY(0deg)';
+        }
+      });
+    });
+
+    
   </script>
 </body>
 </html>
