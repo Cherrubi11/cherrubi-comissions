@@ -16,7 +16,6 @@
     });
   </script>
   <style>
-    /* Animated background with floating hearts */
     body::before {
       content: '';
       position: fixed;
@@ -330,7 +329,6 @@
       font-style: italic;
     }
 
-    /* Dark mode styles */
     body.dark-mode {
       background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 50%, #1a1a2a 100%);
       color: #fcd6ec;
@@ -389,7 +387,6 @@
       transform: scale(1.05);
     }
 
-    /* Mobile responsiveness */
     @media (max-width: 768px) {
       .header h1 {
         font-size: 2.5rem;
@@ -423,7 +420,6 @@
   </style>
 </head>
 <body>
-  <!-- Floating hearts background -->
   <div class="floating-hearts">
     <div class="heart">💖</div>
     <div class="heart">💕</div>
@@ -436,17 +432,14 @@
     <div class="heart">💖</div>
   </div>
 
-  <!-- Navigation -->
   <a href="index.html" class="back-btn">← Back to Portfolio</a>
   <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 
   <div class="container">
-    <!-- Header -->
     <div class="header">
       <h1>Support My Art! 💖</h1>
     </div>
 
-    <!-- Main donation section -->
     <div class="donate-section">
       <h2>🎀 Make a Difference</h2>
       <p>Every little bit helps me continue creating art :3 Your support means the world to me and helps me invest in better tools and more time for art</p>
@@ -455,13 +448,8 @@
         <a href="https://cash.app/$Ch3rrubi" target="_blank" class="donate-btn">
           💖 Donate with CashApp
         </a>
-        <!-- Uncomment when ready -->
-        <!-- <a href="https://www.paypal.me/YourUsername" target="_blank" class="donate-btn">
-          💸 Donate with PayPal
-        </a> -->
       </div>
     </div>
-    <!-- Thank you message -->
     <div class="thank-you">
       <h3>Thank You So Much! 💕</h3>
       <p>Whether you donate or just enjoy my art, your support and kind words mean everything to me.</p>
@@ -475,11 +463,9 @@
       const isDark = document.body.classList.contains('dark-mode');
       toggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
       
-      // Save preference
       localStorage.setItem('darkMode', isDark);
     }
 
-    // Load dark mode preference
     window.addEventListener('DOMContentLoaded', () => {
       const isDark = localStorage.getItem('darkMode') === 'true';
       if (isDark) {
@@ -488,10 +474,8 @@
       }
     });
 
-    // Add some interactive sparkle effect on button hover
     document.querySelectorAll('.donate-btn').forEach(btn => {
       btn.addEventListener('mouseenter', function(e) {
-        // Create sparkle effect
         for (let i = 0; i < 6; i++) {
           setTimeout(() => {
             const sparkle = document.createElement('div');
@@ -511,7 +495,6 @@
       });
     });
 
-    // Add sparkle animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes sparkleFloat {
