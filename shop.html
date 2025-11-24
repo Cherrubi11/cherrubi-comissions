@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cherrubi's Shop - Digital Art Downloads</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style_shop.css">
+</head>
+<body>
+  <div id="seasonalContainer"></div>
+
+  <!-- Closed Site Overlay -->
+  <div id="closedOverlay" style="display: none;">
+    <div class="closed-content">
+      <h1>💕 Shop Closed</h1>
+      <p>Sorry! The shop is currently closed.</p>
+      <p>Come back soon!</p>
+      <div class="closed-socials">
+        <p>Follow me for updates:</p>
+        <a href="https://instagram.com/cherrubi11" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@ch3rrubi" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    🧸ྀི Digital Downloads • Custom Designs
+  </div>
+
+  <header>
+    <div class="header-content">
+      <a href="#" class="logo">Cherrubi Shop</a>
+      <nav>
+        <a href="index.html">Commissions</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="slots-tracker">
+      <h3>₍^. .^₎⟆ This Week's Slots</h3>
+      <p style="color: var(--text-light); margin-bottom: 10px;">
+        <span id="openSlotsCount">7</span> / 7 slots available
+      </p>
+      <div class="slots-display" id="slotsDisplay"></div>
+    </div>
+
+    <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
+  <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
+
+  <audio id="bgMusic" loop>
+    <source src="sounds/lofi.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+    <div class="hero">
+      <h1>୨ৎ Digital Art Shop ୨ৎ</h1>
+      <p>Custom designed • High quality digital products</p>
+    </div>
+
+
+    <div class="product-grid" id="productGrid">
+
+    <!-- MLP -->
+    <div class="product-card" data-price="25" data-id="mlp">
+      <div class="product-image" style="position:relative;">
+        <img class="slider-image" src="images/mlp-1.png" 
+            style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;" 
+            alt="MLP Portrait">
+        <button class="prev-btn" onclick="changeSlide(this, -1)" 
+                style="position:absolute;top:50%;left:5px;transform:translateY(-50%);z-index:2;">‹</button>
+        <button class="next-btn" onclick="changeSlide(this, 1)" 
+                style="position:absolute;top:50%;right:5px;transform:translateY(-50%);z-index:2;">›</button>
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">MLP Portrait</h3>
+        <p class="product-description">A portrait of a My Little Pony OC!</p>
+        <ul class="product-features">
+          <li>Full-body or bust illustration</li>
+          <li>Custom colors, mane, and tail</li>
+          <li>Choose your OC, or let me make one!</li>
+          <li>Additional chars cost $10 each</li>
+          <li>2 revisions included</li>
+        </ul>
+        <div class="product-footer">
+          <span class="product-price" data-price="25">$25</span>
+          <button class="buy-button" onclick="openModal('MLP Portrait', 25)">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+
+      <!-- Plushie Version -->
+      <div class="product-card" data-price="20" data-id="plushie">
+        <div class="product-image">
+          <img src="images/plushie-1.png" class="slider-image" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;">
+          <button class="prev-btn" onclick="changeSlide(this, -1)">‹</button>
+          <button class="next-btn" onclick="changeSlide(this, 1)">›</button>
+        </div>
+
+        <div class="product-info">
+          <h3 class="product-title">Plushie Version</h3>
+          <p class="product-description">
+            Your character turned into a soft, fluffy plush toy! (OR a random OC)
+          </p>
+
+          <ul class="product-features">
+            <li>Button or stitched eyes</li>
+            <li>Custom tag</li>
+            <li>Additional chars cost $10 each</li>
+            <li>2 revisions included</li>
+          </ul>
+
+          <div class="product-footer">
+            <span class="product-price" data-price="20">$20</span>
+            <button class="buy-button" onclick="openModal('Plushie Version', 20)">Order Now</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Animation -->
+      <div class="product-card coming-soon-card" data-price="0" data-id="animation">
+        <div class="product-image">
+          <img src="images/coming-soon.png" class="slider-image" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Simple Looped Animation</h3>
+          <p class="product-description">Bring your character to life with a smooth, looped animation!</p>
+          <div class="coming-soon-banner">✧ Coming Soon ✧</div>
+        </div>
+      </div>
+
+      <!-- Chibi -->
+      <div class="product-card" data-price="15" data-id="chibi">
+        <div class="product-image">
+          <img src="images/chibi-1.png" class="slider-image" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;">
+          <button class="prev-btn" onclick="changeSlide(this, -1)">‹</button>
+          <button class="next-btn" onclick="changeSlide(this, 1)">›</button>
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Chibi</h3>
+          <p class="product-description">Cute full body drawing in chibi style!</p>
+          <ul class="product-features">
+            <li>Additional chars cost $10 each</li>
+            <li>2 revisions included</li>
+          </ul>
+          <div class="product-footer">
+            <span class="product-price" data-price="15">$15</span>
+            <button class="buy-button" onclick="openModal('Chibi Portrait', 15)">Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pet Portrait -->
+      <div class="product-card coming-soon-card" data-price="25" data-id="pet">
+        <div class="product-image">
+          <img src="images/coming-soon.png" class="slider-image" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Pet Portrait</h3>
+          <p class="product-description">Your pet in a cute custom illustration!</p>
+          <div class="coming-soon-banner">✧ Coming Soon ✧</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">Order Product</h2>
+        <p style="color: var(--text-light); margin-bottom: 20px;">Fill out the form below and I'll get back to you with payment details!</p>
+
+        <form id="orderForm" action="https://formspree.io/f/mrbqrwoe" method="POST">
+          <input type="hidden" id="productName" name="product">
+          <input type="hidden" id="productPrice" name="price">
+          
+          <label for="customerName">Your Name *</label>
+          <input type="text" id="customerName" name="name" required>
+          
+          <label for="customerEmail">Your Email *</label>
+          <input type="email" id="customerEmail" name="email" required>
+          
+          <label for="designDetails">Design Details *</label>
+          <textarea id="designDetails" name="details" rows="5" placeholder="Describe what you want - character details, theme, colors, references, etc." required></textarea>
+     
+          <button type="submit">Submit Order Request</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      <h3>(˶˃ ᵕ ˂˶) How It Works</h3>
+      <p><strong>1. Choose your product</strong> - Click "Order Now" on any product above</p>
+      <p><strong>2. Fill out the form</strong> - Provide your details and design preferences</p>
+      <p><strong>3. Receive your files</strong> - Digital downloads delivered within 2-7 days via email</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Cherrubi • <a href="index.html">Commissions</a> </p>
+  </footer>
+
+  <section class="commissions-section">
+    <h2 class="comm-title">Finished Commissions ✧˖°</h2>
+    <div class="done-commissions">
+      <div class="comm-img">
+        <img src="images/shop-1.png" alt="Finished Commission 1">
+        <div class="price-tag">💵 $--</div>
+      </div>
+      <div class="comm-img">
+        <img src="images/shop-2.png" alt="Finished Commission 2">
+        <div class="price-tag">💵 $--</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shop_script.js"></script>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCNKl48MGYe7LdfnE2-3dXBzbTDEtHQuzs",
+      authDomain: "artcommissions-fd346.firebaseapp.com",
+      projectId: "artcommissions-fd346",
+      storageBucket: "artcommissions-fd346.firebasestorage.app",
+      messagingSenderId: "603500082233",
+      appId: "1:603500082233:web:05901544a951ab2cf4c9e8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const shopDoc = doc(db, "shop", "global");
+
+    onSnapshot(shopDoc, (snap) => {
+      if (snap.exists()) {
+        const data = snap.data();
+        console.log('📦 Shop data updated:', data);
+        
+        updateOutOfStockStatus(data.disabledProducts || []);
+        updateClosedState(data.siteOpen ?? true);
+        initSlots(data.filledSlots ?? 0);
+      }
+    });
+
+    function updateOutOfStockStatus(disabledProducts) {
+      document.querySelectorAll('.product-card').forEach(card => {
+        const id = card.dataset.id;
+        const button = card.querySelector('.buy-button');
+        if (!button) return;
+        
+        if (disabledProducts.includes(id)) {
+          button.disabled = true;
+          button.textContent = 'Out of Stock 💔';
+          card.classList.add('disabled');
+        } else {
+          button.disabled = false;
+          button.textContent = 'Order Now';
+          card.classList.remove('disabled');
+        }
+      });
+    }
+
+    function updateClosedState(siteOpen) {
+      const overlay = document.getElementById('closedOverlay');
+      if (!siteOpen) {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function initSlots(filled) {
+      const total = 7;
+      const open = total - filled;
+      const slots = document.getElementById('slotsDisplay');
+      const openCount = document.getElementById('openSlotsCount');
+      
+      if (!slots || !openCount) return;
+      
+      openCount.textContent = open;
+      slots.innerHTML = '';
+      
+      for (let i = 0; i < total; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'slot';
+        slot.textContent = i < filled ? 'ִֶָ𓂃 ࣪˖ ִֶָ🐇་༘࿐' : '🩷';
+        slots.appendChild(slot);
+      }
+
+      const slotsFull = filled >= total;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const button = card.querySelector('.buy-button');
+        if (!button) return;
+        
+        if (card.classList.contains('coming-soon-card')) return;
+        
+        if (slotsFull && !card.classList.contains('disabled')) {
+          button.disabled = true;
+          button.textContent = 'Slots Full 💔';
+          card.style.opacity = '0.6';
+        } else if (!slotsFull && button.textContent === 'Slots Full 💔') {
+          button.disabled = false;
+          button.textContent = 'Order Now';
+          card.style.opacity = '1';
+        }
+      });
+    }
+
+    window.updateOutOfStockStatus = updateOutOfStockStatus;
+    window.updateClosedState = updateClosedState;
+    window.initSlots = initSlots;
+  </script>
+</body>
+</html>
