@@ -105,12 +105,24 @@
 </head>
 
 <body>
+  
   <div id="seasonal-badge">💖 Default</div>
   
   <button id="like-btn">💗 Like this website</button>
   <p>Likes: <span id="like-count">0</span></p>
 
+  
+  
+  <button id="darkModeToggle" aria-pressed="false">Toggle Dark Mode</button>
+
   <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
+  <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
+
+  <audio id="bgMusic" loop>
+    <source src="sounds/lofi.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+  
 
   <section class="social-media">
     <h2>Follow Me!</h2>
@@ -124,27 +136,71 @@
     </div>
   </section>
 
-  <button id="darkModeToggle" aria-pressed="false">Toggle Dark Mode</button>
-  <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
-  <div id="nowPlaying">Now playing: 🎧 lofi.mp3</div>
+  <!-- NEW SHOP BANNER -->
+  <div class="new-shop-banner">
+    <span>🎀 NEW SHOP OPENED! 🎀</span>
+  </div>
 
-  <audio id="bgMusic" loop>
-    <source src="sounds/lofi.mp3" type="audio/mp3" />
-    Your browser does not support the audio element.
-  </audio>
-  
-  <marquee behavior="scroll" direction="left" scrollamount="6">
-    💖 Now taking commissions! 💖
-  </marquee>
+  <style>
+  .new-shop-banner {
+    background: linear-gradient(135deg, #ffd1dc, #ffefba); /* pastel pink to pastel yellow */
+    color: #6b4a6f; /* soft text color */
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 15px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    position: relative;
+    animation: bounce 1.5s ease-in-out infinite alternate;
+  }
+
+  .new-shop-banner span {
+    display: inline-block;
+    transform: rotate(-2deg);
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  </style>
+
+
+
+  <a href="shop.html" class="shop-banner">
+    <div class="shop-banner-content">
+      <span class="shop-banner-icon">🛍️</span>
+      <div class="shop-banner-text">
+        <h2>Shop Digital Downloads!</h2>
+        <p>Matching profiles, animations, character cards & more</p>
+      </div>
+      <span class="shop-banner-arrow">→</span>
+    </div>
+  </a>
 
   <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNHd4MGRkdnN6enAyZmI1c2V6dGdzN254OWRlbDY5a3A3c3VqMTVxeCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/ue7Oh8WdVspgI/source.gif" id="mascot" alt="Mascot" />
 
   <header>
     <h1>Commission Your Art!</h1>
     <nav>
-      <li><a href="donate.html" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">Donate</a></li>
+      <li>
+        <a href="donate.html" class="donate-button">
+          <img src="images/jar.png" alt="Donate Jar" class="donate-jar">
+          <span class="donate-text">Donate</span>
+        </a>
+      </li>
     </nav>
-  </header>
+
+    <button id="tosBtn" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Outfit; font-weight: 600;">
+      📜 Terms of Service
+    </button>
+</header>
 
 
 
@@ -184,52 +240,6 @@
 
   </section>
 
-
-  <section class="commission-info">
-    <h2>How It Works</h2>
-    
-    <div class="info-box">
-      <h3>📝 What I Draw</h3>
-      <ul>
-        <li>Fanart</li>
-        <li>OC illustrations</li>
-        <li>Chibis</li>
-      </ul>
-    </div>
-
-    <div class="info-box">
-      <h3>🚫 What I Don't Draw</h3>
-      <ul>
-        <li>Heavy gore</li>
-        <li>Furries (Animal qualities on humans are allowed!)</li>
-        <li>Anything that makes me uncomfortable</li>
-      </ul>
-    </div>
-
-    <div class="info-box">
-      <h3>✨ Revisions</h3>
-      <p>Each order includes <strong>2 free revisions</strong>.</p>
-      <p>Revisions are for minor changes (colors, small tweaks). Major changes (like changing the whole design) may require a new order.</p>
-    </div>
-
-    <div class="info-box">
-      <h3>💰 Refund Policy</h3>
-      <p>All purchases are <strong>final</strong>, as these are digital products.</p>
-      <p>If you experience a technical issue (file not downloading, corrupt file), <strong>contact me within 3 days</strong> and I'll fix it or replace it.</p>
-      <p>If I fail to deliver the order within the promised timeframe, a full refund will be issued.</p>
-    </div>
-
-    <div class="info-box">
-      <h3>⏱️ Timeline & Pricing</h3>
-      <p>Prices start at <strong>$10</strong>. Delivery usually takes 1-2 days, but can take up to a week depending on complexity and my schedule.</p>
-    </div>
-
-    <div class="info-box">
-      <h3>📱 Social Media Posting</h3>
-      <p>I might post the finished piece on my socials. If you feel uncomfortable with this, message me and I'll delete it from my accounts.</p>
-    </div>
-  </section>
-
   <section class="contact">
     <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
     <h2>Request a Commission</h2>
@@ -238,7 +248,7 @@
       <select id="paymentMethod" name="paymentMethod" required>
         <option value="">Select one</option>
         <option value="usd">USD ($)</option>
-        <option value="robux">Robux (💸 Discount!)</option>
+        <option value="robux">Robux</option>
       </select>
 
       <label for="name">Your Name</label>
@@ -259,10 +269,10 @@
       <label for="additionalChars">Additional Characters (optional)</label>
       <select id="additionalChars" name="additionalChars">
         <option value="0">None</option>
-        <option value="1">1 (+$10)</option>
-        <option value="2">2 (+$20)</option>
-        <option value="3">3 (+$30)</option>
-        <option value="4">4 (+$40)</option>
+        <option value="1">1 (+$20)</option>
+        <option value="2">2 (+$40)</option>
+        <option value="3">3 (+$60)</option>
+        <option value="4">4 (+$80)</option>
       </select>
 
       <p id="priceDisplay"></p>
@@ -274,160 +284,388 @@
     </form>
   </section>
 
-  <div class="chatbox">
-    <p><strong>@Cherrubi:</strong> Taking commissions rn 💕</p>
-  </div>
+<footer>&copy; 2025 Cherrubi.</footer>
 
-  <div class="pfp-container">
-    <img src="images/pfp.png" alt="Profile Picture" />
-  </div>
+<script>
+    // === 1. SEASONAL THEME ===
+    function applySeasonalTheme() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      let themeName = 'Default';
 
-  <script>
-    const form = document.getElementById('commissionForm');
-    const inputs = form.querySelectorAll('input, textarea, select');
+      const set = (name, colors) => {
+        Object.entries(colors).forEach(([key, value]) => {
+          document.documentElement.style.setProperty(key, value);
+        });
+        themeName = name;
+      };
 
-    inputs.forEach(input => {
-      const saved = localStorage.getItem(input.name);
-      if (saved) input.value = saved;
-
-      input.addEventListener('input', () => {
-        localStorage.setItem(input.name, input.value);
-      });
-    });
-
-    const toggle = document.getElementById('darkModeToggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      toggle.setAttribute('aria-pressed', isDark);
-    });
-
-    const musicToggle = document.getElementById('musicToggle');
-    const bgMusic = document.getElementById('bgMusic');
-    let isPlaying = false;
-
-    musicToggle.addEventListener('click', () => {
-      if (!isPlaying) {
-        bgMusic.play();
-        musicToggle.textContent = '🔇 Pause Music';
+      if (month === 10) {
+        set('Halloween', {
+          '--primary-color': '#ff6b35',
+          '--secondary-color': '#8A615F',
+          '--accent-color': '#9d4edd',
+          '--bg-gradient-start': '#2d1b2e',
+          '--bg-gradient-end': '#1a0f1c',
+          '--light-bg': '#3d2940',
+          '--border-color': '#ff6b35',
+          '--text-color': '#f0b8d4'
+        });
+      } else if (month === 12 && day <= 25) {
+        set('Christmas', {
+          '--primary-color': '#c41e3a',
+          '--secondary-color': '#165b33',
+          '--accent-color': '#ffd700',
+          '--bg-gradient-start': '#f0f8ff',
+          '--bg-gradient-end': '#e6f3ff',
+          '--light-bg': '#fff5f5',
+          '--border-color': '#c41e3a',
+          '--text-color': '#165b33'
+        });
+      } else if (month === 2 && day <= 14) {
+        set("Valentine's Day", {
+          '--primary-color': '#ff1493',
+          '--secondary-color': '#ff69b4',
+          '--accent-color': '#ff85c1',
+          '--bg-gradient-start': '#ffe4f1',
+          '--bg-gradient-end': '#fff0f8',
+          '--light-bg': '#fff0f9',
+          '--border-color': '#ff1493',
+          '--text-color': '#a8417a'
+        });
+      } else if (month >= 3 && month <= 5) {
+        set('Spring', {
+          '--primary-color': '#98d8c8',
+          '--secondary-color': '#f7b2bd',
+          '--accent-color': '#ffd89b',
+          '--bg-gradient-start': '#e8f5e9',
+          '--bg-gradient-end': '#fff9e6',
+          '--light-bg': '#f0fff4',
+          '--border-color': '#98d8c8',
+          '--text-color': '#5a7a6f'
+        });
+      } else if (month >= 6 && month <= 8) {
+        set('Summer', {
+          '--primary-color': '#ffa07a',
+          '--secondary-color': '#20b2aa',
+          '--accent-color': '#ffd700',
+          '--bg-gradient-start': '#fff5e6',
+          '--bg-gradient-end': '#e6f7ff',
+          '--light-bg': '#fffaf0',
+          '--border-color': '#ffa07a',
+          '--text-color': '#4a6b6b'
+        });
       } else {
-        bgMusic.pause();
-        musicToggle.textContent = '🎧 Play Music';
-      }
-      isPlaying = !isPlaying;
-    });
-
-    const clickSound = document.getElementById('btnSound');
-    const cuteButtons = document.querySelectorAll('button, .cute-btn, input[type="submit"]');
-
-    cuteButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        clickSound.currentTime = 0;
-        clickSound.play();
-      });
-    });
-
-    const commissionType = document.getElementById('commissionType');
-    const additionalChars = document.getElementById('additionalChars');
-    const priceDisplay = document.getElementById('priceDisplay');
-    const paymentMethod = document.getElementById('paymentMethod');
-
-    function calculatePrice() {
-      const type = commissionType.value;
-      const extras = parseInt(additionalChars.value);
-      const method = paymentMethod.value;
-
-      let total = 0;
-      let robuxPrice = 0;
-
-      if (type === 'Headshot') {
-        robuxPrice = 500;
-        total = 10;
-      } else if (type === 'Half Body') {
-        robuxPrice = 1000;
-        total = 25;
-      } else if (type === 'Full Body') {
-        robuxPrice = 2200;
-        total = 35;
+        set('Default', {
+          '--primary-color': '#f58cae',
+          '--secondary-color': '#a8417a',
+          '--accent-color': '#ff99c8',
+          '--bg-gradient-start': '#ffe4ec',
+          '--bg-gradient-end': '#fff0f6',
+          '--light-bg': '#fff0f6',
+          '--border-color': '#ffc6e7',
+          '--text-color': '#6b4a6f'
+        });
       }
 
-      const extraPrice = extras * 10;
-      const extraRobux = extras * 100;
-      total += extraPrice;
-      robuxPrice += extraRobux;
-
-      if (!type || !method) {
-        priceDisplay.textContent = '';
-        return;
-      }
-
-      if (method === 'robux') {
-        priceDisplay.textContent = `Estimated Price: ${robuxPrice} Robux`;
-      } else {
-        priceDisplay.textContent = `Estimated Price: $${total}`;
-      }
+      const badge = document.getElementById('seasonal-badge');
+      if (badge) badge.textContent = themeName;
     }
 
-    commissionType.addEventListener('change', calculatePrice);
-    additionalChars.addEventListener('change', calculatePrice);
-    paymentMethod.addEventListener('change', calculatePrice);
-  </script>
+    // === 2. PAGE LOAD ===
+    document.addEventListener("DOMContentLoaded", () => {
+      applySeasonalTheme();
 
-  <footer>&copy; 2025 Cherrubi.</footer>
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+      new kursor({ type: 2, color });
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getDatabase, ref, get, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+      const form = document.getElementById('commissionForm');
+      form.querySelectorAll('input, textarea, select').forEach(input => {
+        const saved = localStorage.getItem(input.name);
+        if (saved) input.value = saved;
+        input.addEventListener('input', () => localStorage.setItem(input.name, input.value));
+      });
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBTStgXrYiPgwv7ehITvObhuWwAP0ZJQ10",
-      authDomain: "art-like-button.firebaseapp.com",
-      databaseURL: "https://art-like-button-default-rtdb.firebaseio.com",
-      projectId: "art-like-button",
-      storageBucket: "art-like-button.firebasestorage.app",
-      messagingSenderId: "448177284978",
-      appId: "1:448177284978:web:5f71416588684a3cee5feb"
-    };
+      // Dark Mode
+      document.getElementById('darkModeToggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+      });
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+      // Music Toggle
+      const bgMusic = document.getElementById('bgMusic');
+      let playing = false;
+      document.getElementById('musicToggle').addEventListener('click', () => {
+        if (playing) {
+          bgMusic.pause();
+          document.getElementById('musicToggle').textContent = 'Play Music';
+        } else {
+          bgMusic.play();
+          document.getElementById('musicToggle').textContent = 'Pause Music';
+        }
+        playing = !playing;
+      });
 
-    const likeRef = ref(db, "likes");
-    const likeBtn = document.getElementById("like-btn");
-    const likeCount = document.getElementById("like-count");
+      const clickSound = document.getElementById('btnSound');
+      document.querySelectorAll('button, input[type="submit"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          clickSound.currentTime = 0;
+          clickSound.play().catch(() => {});
+        });
+      });
 
-    onValue(likeRef, (snapshot) => {
-      const likes = snapshot.val() ?? 0;
-      likeCount.textContent = likes;
+      // Price Calculator
+      const type = document.getElementById('commissionType');
+      const extras = document.getElementById('additionalChars');
+      const method = document.getElementById('paymentMethod');
+      const display = document.getElementById('priceDisplay');
+
+      const calc = () => {
+        const t = type.value;
+        const e = parseInt(extras.value) || 0;
+        const m = method.value;
+
+        if (!t || !m) { display.textContent = ''; return; }
+
+        const prices = { Headshot: 15, 'Half Body': 30, 'Full Body': 45 };
+        const robux = { Headshot: 1200, 'Half Body': 2400, 'Full Body': 4000 };
+
+        const total = prices[t] + e * 20;
+        const robuxTotal = robux[t] + e * 1700;
+
+        display.textContent = m === 'robux' ? `Estimated: ${robuxTotal} Robux` : `Estimated: $${total}`;
+      };
+
+      type.addEventListener('change', calc);
+      extras.addEventListener('change', calc);
+      method.addEventListener('change', calc);
+
+      // === SHOP CLOSED OVERLAY ===
+      if (localStorage.getItem('siteOpen') === 'false') {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+          position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+          background: rgba(0,0,0,0.9); color: white; display: flex;
+          flex-direction: column; align-items: center; justify-content: center;
+          z-index: 9999; font-family: Outfit; text-align: center; padding: 20px;
+        `;
+        overlay.innerHTML = `
+          <h1>Shop & Commissions Closed</h1>
+          <p>Sorry! I'm not taking orders right now.</p>
+          <p>Come back soon!</p>
+          <div style="margin-top:20px;">
+            <a href="https://instagram.com/cherrubi11" style="color:#ff99c8; text-decoration:underline;">Instagram</a> • 
+            <a href="https://tiktok.com/@ch3rrubi" style="color:#ff99c8; text-decoration:underline;">TikTok</a>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+      }
     });
 
-    window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      if (!window.firebaseDB) return;
+      const { likeRef, onValue, get, set } = window.firebaseDB;
+      const likeBtn = document.getElementById("like-btn");
+      const likeCount = document.getElementById("like-count");
+
+      onValue(likeRef, (snap) => {
+        likeCount.textContent = snap.val() ?? 0;
+      });
+
       if (localStorage.getItem("hasLiked")) {
         likeBtn.disabled = true;
-        likeBtn.textContent = "💖 Thanks for liking!";
-      }
-    });
-
-    likeBtn.addEventListener("click", async () => {
-      if (localStorage.getItem("hasLiked")) {
-        alert("You already liked this!");
-        return;
+        likeBtn.textContent = "Thanks for liking!";
       }
 
-      try {
-        const snapshot = await get(likeRef);
-        const currentLikes = snapshot.val() ?? 0;
-
-        await set(likeRef, currentLikes + 1);
-
-        localStorage.setItem("hasLiked", "true");
-        likeBtn.disabled = true;
-        likeBtn.textContent = "💖 Thanks for liking!";
-      } catch (error) {
-        console.error("Error updating likes:", error);
-        alert("Oops, something went wrong. Try again later.");
-      }
-    });
+      likeBtn.addEventListener("click", async () => {
+        if (localStorage.getItem("hasLiked")) {
+          alert("You already liked this!");
+          return;
+        }
+        try {
+          const snap = await get(likeRef);
+          await set(likeRef, (snap.val() ?? 0) + 1);
+          localStorage.setItem("hasLiked", "true");
+          likeBtn.disabled = true;
+          likeBtn.textContent = "Thanks for liking!";
+        } catch (err) {
+          console.error(err);
+          alert("Error. Try again later.");
+        }
+      });
+    }, 1000);
   </script>
 </body>
+
+
+
+<!-- TOS Modal -->
+<div id="tosModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); font-family: Outfit;">
+  <div style="background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)); margin: 5% auto; padding: 30px; border: 3px solid var(--border-color); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+
+    <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 20px; font-size: 2rem;">📜 Terms of Service</h2>
+    
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">✨ What I Draw</h3>
+      <ul style="color: var(--text-color); line-height: 1.8;">
+        <li>Fanart (anime, games, shows, etc.)</li>
+        <li>Original characters (OCs)</li>
+        <li>Character designs</li>
+        <li>Portraits & illustrations</li>
+      </ul>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">🚫 What I Don't Draw</h3>
+      <ul style="color: var(--text-color); line-height: 1.8;">
+        <li>Heavy gore or graphic violence</li>
+        <li>Furries (animal features on humans are OK!)</li>
+        <li>NSFW/adult content</li>
+        <li>Hateful or offensive content</li>
+        <li>Anything that makes me uncomfortable</li>
+      </ul>
+      <p style="color: var(--text-color); font-size: 0.9rem; margin-top: 10px;">
+        <em>I reserve the right to decline any commission for any reason.</em>
+      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">💰 Pricing & Payment</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        <strong>Base Prices:</strong><br>
+        • Headshot: $15 / 1200 Robux<br>
+        • Half Body: $30 / 2400 Robux<br>
+        • Full Body: $45 / 4000 Robux<br>
+        • Additional characters: +$20 / +1700 Robux each
+      </p>
+      <p style="color: var(--text-color); line-height: 1.8; margin-top: 15px;">
+        <strong>Payment:</strong> I accept payment <strong>upfront</strong> or <strong>half now, half when finished</strong>.      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">⏱️ Timeline</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        Commissions typically take <strong>1-7 days</strong> depending on complexity and my current workload. I'll keep you updated on progress!
+      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">✏️ Revisions</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        Each commission includes <strong>2 free revisions</strong> for minor changes (colors, small details, etc.).
+      </p>
+      <p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;">
+        Major changes (complete redesign, different pose, etc.) may require additional payment.
+      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">🔄 Refund Policy</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        All sales are <strong>final</strong> once work has started. However:
+      </p>
+      <ul style="color: var(--text-color); line-height: 1.8;">
+        <li>If I fail to deliver within the agreed timeframe, you'll receive a full refund</li>
+        <li>Technical issues (corrupt files, download problems) will be fixed for free</li>
+        <li>Refunds before work begins are handled case-by-case</li>
+      </ul>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">📱 Usage Rights</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        <strong>Personal Use:</strong> You can use the artwork for personal purposes (profile pictures, backgrounds, printing for yourself, etc.)
+      </p>
+      <p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;">
+        <strong>Commercial Use:</strong> Using the art for profit (merchandise, business branding, etc.) requires a commercial license. Contact me for pricing!
+      </p>
+      <p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;">
+        <strong>My Rights:</strong> I retain the right to post finished commissions on my social media for portfolio purposes. If you prefer privacy, let me know and I won't post it publicly!
+      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">📦 File Delivery</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        You'll receive high-resolution PNG files via email. If you need a different format just ask!
+      </p>
+    </div>
+
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; border: 2px solid var(--border-color);">
+      <h3 style="color: var(--primary-color); margin-top: 0;">📧 Contact & Questions</h3>
+      <p style="color: var(--text-color); line-height: 1.8;">
+        Have questions? DM me on Instagram <a href="https://instagram.com/cherrubi11" target="_blank" style="color: var(--primary-color); text-decoration: underline;">@cherrubi11</a> or TikTok <a href="https://tiktok.com/@ch3rrubi" target="_blank" style="color: var(--primary-color); text-decoration: underline;">@ch3rrubi</a>
+      </p>
+    </div>
+
+    <p style="text-align: center; color: var(--text-color); margin-top: 20px; font-size: 0.9rem;">
+      By commissioning me, you agree to these terms. 💕
+    </p>
+
+    <div style="text-align:center; margin-top: 15px;">
+      <button id="tosAgreeBtn" disabled style="padding: 10px 20px; font-family: Outfit; font-weight: 600; border-radius: 8px; border:none; background: var(--primary-color); color:white; cursor:pointer;">
+        ✅ I Agree
+      </button>
+    </div> 
+    <p style="text-align: center; color: var(--text-color); font-size: 0.85rem; margin-top: 10px;">
+      © 2025 Cherrubi. All rights reserved.
+    </p>
+
+  </div>
+</div>
+
+<script>
+  // TOS Modal functionality
+  const tosModal = document.getElementById('tosModal');
+  const tosBtn = document.getElementById('tosBtn');
+
+  tosBtn.onclick = function() {
+    tosModal.style.display = 'block';
+  }
+
+  // Close when clicking outside the modal
+  window.onclick = function(event) {
+    if (event.target == tosModal) {
+      tosModal.style.display = 'none';
+    }
+  }
+
+  // Close with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && tosModal.style.display === 'block') {
+      tosModal.style.display = 'none';
+    }
+  });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const tosModal = document.getElementById('tosModal');
+  const tosAgreeBtn = document.getElementById('tosAgreeBtn');
+  const tosContent = tosModal.querySelector('div'); // your inner modal content
+
+  // Show modal only if user hasn't agreed yet
+  if (!localStorage.getItem('tosAgreed')) {
+    tosModal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  // Enable Agree button when scrolled to bottom
+  tosContent.addEventListener('scroll', () => {
+    if (tosContent.scrollTop + tosContent.clientHeight >= tosContent.scrollHeight - 5) {
+      tosAgreeBtn.disabled = false;
+    }
+  });
+
+  // When they click Agree
+  tosAgreeBtn.addEventListener('click', () => {
+    localStorage.setItem('tosAgreed', 'true');
+    tosModal.style.display = 'none';
+    document.body.style.overflow = ''; // restore scrolling
+  });
+});
+
+</script>
+
+
 </html>
