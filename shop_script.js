@@ -159,7 +159,7 @@ const images = {
     'animation': ['images/anim-1.gif', 'images/anim-2.gif'],
     'trio': ['images/trio-1.png', 'images/trio-2.png'],
     'mlp': ['images/mlp-1.png', 'images/mlp-2.png'],
-    'plushie': ['images/plush-1.png', 'images/plush-2.png']
+    'animatronic': ['images/anima-1.png', 'images/anima-2.png']
   };
 
 function changeSlide(button, direction) {
