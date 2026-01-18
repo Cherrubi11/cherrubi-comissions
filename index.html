@@ -132,6 +132,11 @@
     </div>
   </section>
 
+  <!-- NEW SHOP BANNER -->
+  <div class="new-shop-banner">
+    <span>🎀 NEW SHOP OPENED! 🎀</span>
+  </div>
+
   <style>
   .new-shop-banner {
     background: linear-gradient(135deg, #ffd1dc, #ffefba);
@@ -224,11 +229,7 @@
       <div class="price-tag">💵 $70</div>
     </div>
     <div class="comm-img">
-      <img src="images/85-1.png" alt="Finished Commission 5">
-      <div class="price-tag">💵 $85</div>
-    </div>
-    <div class="comm-img">
-      <img src="images/robux-1.png" alt="Finished Commission 6">
+      <img src="images/robux-1.png" alt="Finished Commission 5">
       <div class="price-tag">💸 1000 Robux</div>
     </div>
 
@@ -238,12 +239,6 @@
     <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
     <h2>Request a Commission</h2>
     <form id="commissionForm" action="https://formspree.io/f/mrbqrwoe" method="POST">
-      <label for="paymentMethod">Payment Method</label>
-      <select id="paymentMethod" name="paymentMethod" required>
-        <option value="">Select one</option>
-        <option value="usd">USD ($)</option>
-        <option value="robux">Robux</option>
-      </select>
 
       <label for="name">Your Name</label>
       <input type="text" id="name" name="name" required />
@@ -411,28 +406,25 @@
       // Price Calculator
       const type = document.getElementById('commissionType');
       const extras = document.getElementById('additionalChars');
-      const method = document.getElementById('paymentMethod');
       const display = document.getElementById('priceDisplay');
 
       const calc = () => {
         const t = type.value;
         const e = parseInt(extras.value) || 0;
-        const m = method.value;
 
-        if (!t || !m) { display.textContent = ''; return; }
+        if (!t) { 
+          display.textContent = ''; 
+          return; 
+        }
 
         const prices = { Headshot: 15, 'Half Body': 30, 'Full Body': 45 };
-        const robux = { Headshot: 1200, 'Half Body': 2400, 'Full Body': 4000 };
+        const total = prices[t] + (e * 20);
 
-        const total = prices[t] + e * 20;
-        const robuxTotal = robux[t] + e * 1700;
-
-        display.textContent = m === 'robux' ? `Estimated: ${robuxTotal} Robux` : `Estimated: $${total}`;
+        display.textContent = `💰 Total: $${total} USD`;
       };
 
       type.addEventListener('change', calc);
       extras.addEventListener('change', calc);
-      method.addEventListener('change', calc);
 
       // === SHOP CLOSED OVERLAY ===
       if (localStorage.getItem('siteOpen') === 'false') {
@@ -495,10 +487,10 @@
       <h3 style="color: var(--primary-color); margin-top: 0;">💰 Pricing & Payment</h3>
       <p style="color: var(--text-color); line-height: 1.8;">
         <strong>Base Prices:</strong><br>
-        • Headshot: $15 / 1200 Robux<br>
-        • Half Body: $30 / 2400 Robux<br>
-        • Full Body: $45 / 4000 Robux<br>
-        • Additional characters: +$20 / +1700 Robux each
+        • Headshot: $15<br>
+        • Half Body: $30<br>
+        • Full Body: $45<br>
+        • Additional characters: +$20
       </p>
       <p style="color: var(--text-color); line-height: 1.8; margin-top: 15px;">
         <strong>Payment:</strong> I accept payment <strong>upfront</strong> or <strong>half now, half when finished</strong>.      </p>
