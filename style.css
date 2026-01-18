@@ -76,7 +76,7 @@ img {
   color: var(--text-color);
 }
 
-.robux-text {
+.-text {
   color: var(--accent-color);
   text-shadow: 0 0 4px var(--light-bg);
 }
@@ -374,7 +374,7 @@ marquee {
   box-shadow: 0 8px 15px rgba(245, 140, 174, 0.4);
 }
 
-/* Tag for USD / Robux */
+/* Tag for USD /
 .done-commissions .price-tag {
   position: absolute;
   top: 8px;
