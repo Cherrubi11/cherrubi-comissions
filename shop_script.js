@@ -2,10 +2,8 @@
    shop_script.js
 ------------------------------------------------- */
 
-const TOTAL_SLOTS = 7;
+
 const SITE_OPEN = localStorage.getItem('siteOpen') !== 'false';
-const FILLED_SLOTS = parseInt(localStorage.getItem('filledSlots')) || 0;
-const DISABLED_PRODUCTS = JSON.parse(localStorage.getItem('disabledProducts')) || [];
 let basePrice = 0;
 
 /* ---------- 1. SHOP CLOSED OVERLAY ---------- */
@@ -40,48 +38,6 @@ function applySeasonalTheme() {
     el.style.animationDelay = Math.random() * 5 + 's';
     container.appendChild(el);
   }
-}
-
-/* ---------- 3. SLOTS TRACKER ---------- */
-function initSlots() {
-  const filledSlots = parseInt(localStorage.getItem('filledSlots')) || 0;
-  const openCount = TOTAL_SLOTS - filledSlots;
-  const countEl = document.getElementById('openSlotsCount');
-  const display = document.getElementById('slotsDisplay');
-
-  if (countEl) countEl.textContent = openCount;
-  if (!display) return;
-
-  display.innerHTML = '';
-  for (let i = 0; i < TOTAL_SLOTS; i++) {
-    const slot = document.createElement('div');
-    slot.className = 'slot ' + (i < openCount ? 'open' : 'filled');
-    slot.textContent = i < openCount ? 'ִֶָ🐇་' : '✔️';
-    display.appendChild(slot);
-  }
-
-  updateOutOfStockStatus();
-}
-
-/* ---------- 4. OUT-OF-STOCK STATUS ---------- */
-function updateOutOfStockStatus() {
-  const filledSlots = parseInt(localStorage.getItem('filledSlots')) || 0;
-  const openCount = TOTAL_SLOTS - filledSlots;
-  const isGlobalSoldOut = openCount === 0;
-  const disabledProducts = JSON.parse(localStorage.getItem('disabledProducts')) || [];
-  const cards = document.querySelectorAll('.product-card');
-  if (!cards) return;
-
-  cards.forEach(card => {
-    const productId = card.dataset.id;
-    const isDisabled = disabledProducts.includes(productId) || isGlobalSoldOut;
-    card.classList.toggle('out-of-stock', isDisabled);
-    const btn = card.querySelector('.buy-button');
-    if (btn) {
-      btn.disabled = isDisabled;
-      btn.textContent = isDisabled ? 'Out Of Stock' : 'Order Now';
-    }
-  });
 }
 
 
@@ -187,14 +143,11 @@ window.addEventListener('DOMContentLoaded', () => {
   if (animSel) { animSel.selectedIndex = 0; updateAnimationPrice(animSel); }
 
   applySeasonalTheme();
-  initSlots();
   initFloatingButtons();
   updateAllCounts();
 });
 
 window.addEventListener('storage', e => {
-  if (e.key === 'filledSlots') initSlots();
-  if (e.key === 'disabledProducts') updateOutOfStockStatus();
   if (e.key === 'siteOpen') {
     const siteOpen = localStorage.getItem('siteOpen') !== 'false';
     const overlay = document.getElementById('closedOverlay');
