@@ -110,32 +110,43 @@ if (orderForm) {
 }
 
 
+
 const images = {
     'chibi': ['images/chibi-1.png', 'images/chibi-2.png'],
-    'animation': ['images/anim-1.gif', 'images/anim-2.gif'],
-    'trio': ['images/trio-1.png', 'images/trio-2.png'],
     'mlp': ['images/mlp-1.png', 'images/mlp-2.png'],
-    'animatronic': ['images/anima-1.png', 'images/anima-2.png']
-  };
+    'page': ['images/page-1.png', 'images/page-2.png', 'images/page-3.png'],
+    'sketch': ['images/sketch-1.png', 'images/sketch-2.png'], 
+    'discord': ['images/discord-1.png', 'images/discord-2.png']
+};
 
 function changeSlide(button, direction) {
-  const card = button.closest('.product-card');
-  const id = card.dataset.id;
-  if (!id || !images[id]) return;
+    const card = button.closest('.product-card');
+    if (!card) return;
 
-  const img = card.querySelector('.slider-image');
-  if (!img) return;
+    const id = card.dataset.id;
+    
+    if (!id || !images[id]) return; 
 
-  if (!img.dataset.index) img.dataset.index = 0;
+    const img = card.querySelector('.slider-image');
+    if (!img) return;
 
-  let index = parseInt(img.dataset.index) + direction;
-  if (index < 0) index = images[id].length - 1;
-  if (index >= images[id].length) index = 0;
+    if (img.dataset.index === undefined) {
+        const currentSrc = img.getAttribute('src');
+        const foundIndex = images[id].indexOf(currentSrc);
+        img.dataset.index = foundIndex !== -1 ? foundIndex : 0;
+    }
 
-  img.src = images[id][index];
-  img.dataset.index = index;
+    let index = parseInt(img.dataset.index) + direction;
+
+    if (index < 0) index = images[id].length - 1;
+    if (index >= images[id].length) index = 0;
+
+    const nextSrc = images[id][index];
+    if (nextSrc) {
+        img.src = nextSrc;
+        img.dataset.index = index;
+    }
 }
-
 
 
 window.addEventListener('DOMContentLoaded', () => {
