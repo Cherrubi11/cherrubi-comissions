@@ -546,13 +546,12 @@
       </div>
     </div>
 
-    <!-- ══ GRID ══ -->
     <div class="grid-section-label">✦ more products</div>
     <div class="product-grid">
 
       <!-- SKETCH OVERLAY -->
       <div class="product-card" data-id="sketch">
-        <div class="product-image">
+        <div class="product-image" style="position:relative;">
           <img class="slider-image" src="images/sketch-1.png" alt="Sketch">
           <button class="prev-btn" onclick="changeSlide(this,-1)">‹</button>
           <button class="next-btn" onclick="changeSlide(this, 1)">›</button>
@@ -567,7 +566,7 @@
           <div class="product-slots" id="slots-sketch"><!-- js --></div>
           <div class="product-footer">
             <span class="product-price">$5</span>
-            <button class="buy-button" id="btn-sketch" onclick="openProductModal('sketch')">Order Now</button>
+            <button class="buy-button" onclick="openModal('Sketch', 5)">Order Now</button>
           </div>
         </div>
       </div>
@@ -665,7 +664,7 @@
     <footer>&copy; 2025 Cherrubi ♡ <a href="index.html">Commissions</a></footer>
   </div>
 
-  <!-- ══ SHARED MODAL (chibi + MLP) ══ -->
+  <!-- ══ SHARED MODAL (chibi + MLP + skecth) ══ -->
   <div class="modal" id="orderModal">
     <div class="modal-content">
       <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -680,23 +679,6 @@
         <input type="email" id="customerEmail" name="email" required>
         <label>Design Details *</label>
         <textarea id="designDetails" name="details" rows="5" placeholder="character details, colors, references, etc." required></textarea>
-        <button type="submit">Submit Order</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- SKETCH MODAL -->
-  <div class="modal" id="modal-sketch">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeProductModal('sketch')">&times;</span>
-      <h2>✏️ Sketch — $5</h2>
-      <p>fill this out and i'll get back to you with payment details! 💌</p>
-      <form id="form-sketch" action="https://formspree.io/f/mrbqrwoe" method="POST">
-        <input type="hidden" name="product" value="Sketch — $5">
-        <label>Your Name *</label><input type="text" name="name" required>
-        <label>Your Email *</label><input type="email" name="email" required>
-        <label>Character details *</label>
-        <textarea name="details" rows="5" placeholder="describe your character, attach refs, colors, pose ideas, etc." required></textarea>
         <button type="submit">Submit Order</button>
       </form>
     </div>
@@ -850,7 +832,12 @@
     }
 
     // ── GRID SLIDERS ──
-    const images = { mlp:['images/mlp-1.png','images/mlp-2.png'] };
+    const images = { 
+        mlp: ['images/mlp-1.png', 'images/mlp-2.png'],
+        page: ['images/page-1.png', 'images/page-2.png'],
+        sketch: ['images/sketch-1.png', 'images/sketch-2.png'],
+        discord: ['images/discord-1.png', 'images/discord-2.png']
+    };
     function changeSlide(btn, dir) {
       const card = btn.closest('.product-card');
       const id   = card.dataset.id;
