@@ -110,45 +110,6 @@ if (orderForm) {
 }
 
 
-
-const images = {
-    'chibi': ['images/chibi-1.png', 'images/chibi-2.png'],
-    'mlp': ['images/mlp-1.png', 'images/mlp-2.png'],
-    'page': ['images/page-1.png', 'images/page-2.png', 'images/page-3.png'],
-    'sketch': ['images/sketch-1.png', 'images/sketch-2.png'], 
-    'discord': ['images/discord-1.png', 'images/discord-2.png']
-};
-
-function changeSlide(button, direction) {
-    const card = button.closest('.product-card');
-    if (!card) return;
-
-    const id = card.dataset.id;
-    
-    if (!id || !images[id]) return; 
-
-    const img = card.querySelector('.slider-image');
-    if (!img) return;
-
-    if (img.dataset.index === undefined) {
-        const currentSrc = img.getAttribute('src');
-        const foundIndex = images[id].indexOf(currentSrc);
-        img.dataset.index = foundIndex !== -1 ? foundIndex : 0;
-    }
-
-    let index = parseInt(img.dataset.index) + direction;
-
-    if (index < 0) index = images[id].length - 1;
-    if (index >= images[id].length) index = 0;
-
-    const nextSrc = images[id][index];
-    if (nextSrc) {
-        img.src = nextSrc;
-        img.dataset.index = index;
-    }
-}
-
-
 window.addEventListener('DOMContentLoaded', () => {
   const animSel = document.getElementById('animationStyle');
   if (animSel) { animSel.selectedIndex = 0; updateAnimationPrice(animSel); }
