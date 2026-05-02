@@ -896,6 +896,7 @@ product-image {
   .prev-btn, .next-btn {
     position: absolute;
     top: 50%;
+    z-index: 999;
     transform: translateY(-50%);
     background: rgba(0,0,0,0.4);
     color: white;
@@ -903,6 +904,7 @@ product-image {
     padding: 5px 10px;
     font-size: 20px;
     cursor: pointer;
+    pointer-events: auto !important;
     border-radius: 5px;
   }
   .prev-btn { left: 5px; }
