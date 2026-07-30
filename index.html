@@ -12,6 +12,502 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
   <style>
+
+    .social-media-square {
+      width: 220px;
+      height: 220px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 240, 246, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+
+      border: 3px dashed #f58cae;
+      outline: 6px solid rgba(255, 240, 246, 0.9);
+      box-shadow: 
+        0 0 0 9px #f58cae,
+        0 8px 25px rgba(245, 140, 174, 0.3);
+      border-radius: 12px;
+    }
+
+    .social-media-square h2 {
+      font-size: 1.1rem;
+      color: #a8417a;
+      margin: 0 0 18px 0;
+      font-weight: 600;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.15) rotate(-3deg);
+    }
+
+    .social-icons img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(245, 140, 174, 0.4));
+    }
+
+    body.dark-mode .social-media-square {
+      background: rgba(42, 42, 42, 0.85);
+      border-color: #ff99c8;
+      outline-color: rgba(42, 42, 42, 0.9);
+      box-shadow: 
+        0 0 0 9px #ff99c8,
+        0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode .social-media-square h2 {
+      color: #fcd6ec;
+    }
+
+    .top-left-controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .top-left-controls button {
+      background: rgba(255, 240, 246, 0.9);
+      border: 2px solid #f58cae;
+      border-radius: 50px;
+      padding: 10px 18px;
+      color: #a8417a;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(245, 140, 174, 0.3);
+    }
+
+    .top-left-controls button:hover {
+      background: #f58cae;
+      color: white;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 16px rgba(245, 140, 174, 0.5);
+    }
+
+    .top-left-controls button:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    body.dark-mode .top-left-controls button {
+      background: rgba(42, 42, 42, 0.9);
+      border-color: #ff99c8;
+      color: #ffc6e0;
+    }
+
+    body.dark-mode .top-left-controls button:hover {
+      background: #ff99c8;
+      color: #1e1e1e;
+    }
+
+    @media (max-width: 768px) {
+      .top-left-controls {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .top-left-controls button {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+      }
+    }
+
+  .shop-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 500px;
+      margin: 25px auto;
+      padding: 14px 28px;
+      background: rgba(255, 240, 246, 0.9);
+      border: 2px solid #f58cae;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(245, 140, 174, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .shop-banner-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .shop-banner-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #a8417a;
+      transition: transform 0.3s ease;
+    }
+
+    .shop-banner-text h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #a8417a;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .shop-banner-arrow {
+      font-size: 1.2rem;
+      color: #f58cae;
+      transition: transform 0.3s ease;
+    }
+
+    .shop-banner:hover {
+      transform: translateY(-4px) scale(1.02);
+      background: rgba(255, 228, 236, 0.95);
+      border-color: #f58cae;
+      box-shadow: 
+        0 12px 30px rgba(245, 140, 174, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .shop-banner:hover .shop-banner-icon {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    .shop-banner:hover .shop-banner-arrow {
+      transform: translateX(6px);
+      color: #a8417a;
+    }
+
+    .shop-banner:active {
+      transform: translateY(-1px) scale(0.99);
+    }
+
+    body.dark-mode .shop-banner {
+      background: rgba(42, 42, 42, 0.85);
+      border-color: rgba(255, 153, 200, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-mode .shop-banner-text h2,
+    body.dark-mode .shop-banner-icon {
+      color: #ffc6e0;
+    }
+
+    body.dark-mode .shop-banner-arrow {
+      color: #ff99c8;
+    }
+
+    body.dark-mode .shop-banner:hover {
+      background: rgba(55, 42, 52, 0.95);
+      border-color: #ff99c8;
+    }
+
+    @media (max-width: 600px) {
+      .shop-banner {
+        padding: 14px 20px;
+        margin: 20px 10px;
+      }
+
+      .shop-banner-text h2 {
+        font-size: 1.1rem;
+      }
+
+      .shop-banner-icon {
+        font-size: 1.2rem;
+      }
+    }
+
+    .main-header {
+    text-align: center;
+    margin: 40px auto;
+    padding: 30px 20px;
+    max-width: 650px;
+    background: rgba(255, 240, 246, 0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(245, 140, 174, 0.3);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(245, 140, 174, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .main-header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #f58cae;
+    text-shadow: 0 0 15px rgba(245, 140, 174, 0.4);
+    font-weight: 800;
+  }
+
+  .header-nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .donate-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: linear-gradient(135deg, #f58cae 0%, #ff99c8 100%);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(245, 140, 174, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .donate-jar {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .donate-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(245, 140, 174, 0.5);
+  }
+
+  .tos-button {
+    background: #fff0f6;
+    color: #a8417a;
+    border: 2px solid #f58cae;
+    padding: 10px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(245, 140, 174, 0.2);
+  }
+
+  .tos-button:hover {
+    background: #f58cae;
+    color: white;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(245, 140, 174, 0.4);
+  }
+
+  body.dark-mode .main-header {
+    background: rgba(42, 42, 42, 0.85);
+    border-color: rgba(255, 153, 200, 0.3);
+  }
+
+  body.dark-mode .main-header h1 {
+    color: #ff99c8;
+  }
+
+  body.dark-mode .tos-button {
+    background: #2a2a2a;
+    border-color: #ff99c8;
+    color: #ffc6e0;
+  }
+
+  body.dark-mode .tos-button:hover {
+    background: #ff99c8;
+    color: #1e1e1e;
+  }
+
+  @media (max-width: 600px) {
+    .main-header h1 {
+      font-size: 2rem;
+    }
+    
+    .header-nav-group {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  .portfolio-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .portfolio-section h2 {
+    font-size: 2.2rem;
+    color: #a8417a;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 800;
+  }
+
+  .header-gif {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    justify-content: center;
+  }
+
+  .portfolio-item {
+    background: rgba(255, 240, 246, 0.8);
+    border: 2px solid rgba(245, 140, 174, 0.3);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(245, 140, 174, 0.2);
+    transition: all 0.3s ease;
+    aspect-ratio: 4 / 5;
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .portfolio-item:hover {
+    transform: translateY(-6px);
+    border-color: #f58cae;
+    box-shadow: 0 14px 28px rgba(245, 140, 174, 0.4);
+  }
+
+  .portfolio-item:hover img {
+    transform: scale(1.05);
+  }
+
+  body.dark-mode .portfolio-section h2 {
+    color: #ff99c8;
+  }
+
+  body.dark-mode .portfolio-item {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: rgba(255, 153, 200, 0.3);
+  }
+
+  @media (max-width: 600px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .portfolio-section h2 {
+      font-size: 1.8rem;
+    }
+  }
+
+
+  .finished-comms-wrap {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .finished-comms-wrap h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #a8417a;
+    margin-bottom: 25px;
+    font-weight: 800;
+  }
+
+  .comms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .comm-box {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    border: 2px solid rgba(245, 140, 174, 0.4) !important;
+    box-shadow: 0 6px 16px rgba(245, 140, 174, 0.2) !important;
+    background: #fff0f6 !important;
+    transition: transform 0.3s ease, border-color 0.3s ease !important;
+  }
+
+  .comm-box img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .price-badge {
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    top: auto !important;
+    left: auto !important;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+    background: rgba(255, 240, 246, 0.92) !important;
+    backdrop-filter: blur(4px) !important;
+    border: 1.5px solid #f58cae !important;
+    color: #a8417a !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    padding: 5px 12px !important;
+    border-radius: 50px !important;
+    z-index: 10 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    white-space: nowrap !important;
+  }
+
+  .comm-box:hover {
+    transform: translateY(-4px) !important;
+    border-color: #f58cae !important;
+  }
+
+  .comm-box:hover .price-badge {
+    background: #f58cae !important;
+    color: #ffffff !important;
+  }
+
+
+
     .slots-section { text-align: center; margin-bottom: 24px; }
     .slots-label { font-weight: 700; color: var(--secondary-color); margin-bottom: 12px; font-size: 1rem; }
     .slots-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
@@ -39,64 +535,112 @@
     .wl-btns button { font-size: 0.95rem; padding: 10px 22px; }
     .wl-cancel { background: var(--light-bg) !important; color: var(--secondary-color) !important; border: 2px solid var(--border-color) !important; }
     .wl-cancel:hover { background: var(--border-color) !important; }
+
+    body {
+      background-color: #ffe4ec !important;
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(rgba(255, 255, 255, 0.8) 2px, transparent 2px) !important;
+      background-size: 24px 24px !important;
+      background-position: 0 0, 12px 12px !important;
+    }
+    body.dark-mode {
+      background-color: #1a1a2a !important;
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+        radial-gradient(rgba(255, 255, 255, 0.08) 2px, transparent 2px) !important;
+    }
   </style>
 </head>
-<body>
-  <div id="seasonal-badge">💖 Default</div>
-  <button id="darkModeToggle" aria-pressed="false">Toggle Dark Mode</button>
-  <audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
-  <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">🎧 Play Music</button>
-  <audio id="bgMusic" loop><source src="sounds/lofi.mp3" type="audio/mp3" /></audio>
 
-  <section class="social-media">
-    <h2>Follow Me!</h2>
+
+
+<body>
+  <div class="top-left-controls">
+    <button id="darkModeToggle" aria-pressed="false">⋮ ⌗ Mode Toggle</button>
+    <button id="musicToggle" aria-pressed="false" aria-label="Toggle Music">˖ ݁♬ Music</button>
+  </div>
+
+<audio id="btnSound" src="sounds/click.mp3" preload="auto"></audio>
+<audio id="bgMusic" loop><source src="sounds/lofi.mp3" type="audio/mp3" /></audio>
+
+  <section class="social-media-square">
+    <h2>Follow Me ⋆‧°𓏲ּ𝄢</h2>
     <div class="social-icons">
-      <a href="https://instagram.com/cherrubi11" target="_blank" aria-label="Instagram"><img src="images/insta.png" alt="Instagram" /></a>
-      <a href="https://tiktok.com/@ch3rrubi" target="_blank" aria-label="TikTok"><img src="images/tiktok.png" alt="TikTok" /></a>
+      <a href="https://instagram.com/cherrubi11" target="_blank" aria-label="Instagram">
+        <img src="images/insta.png" alt="Instagram" />
+      </a>
+      <a href="https://tiktok.com/@ch3rrubi" target="_blank" aria-label="TikTok">
+        <img src="images/tiktok.png" alt="TikTok" />
+      </a>
     </div>
   </section>
 
   <a href="shop.html" class="shop-banner">
-    <div class="shop-banner-content">
-      <span class="shop-banner-icon">🛍️</span>
-      <div class="shop-banner-text"><h2>Shop Digital Downloads!</h2></div>
-      <span class="shop-banner-arrow">→</span>
+    <span class="shop-banner-icon">୭ ᵎᵎ 🧁</span>
+    <div class="shop-banner-text">
+      <h2>Shop Digital Downloads!</h2>
     </div>
+    <span class="shop-banner-arrow">⋆‧°𓏲ּ𝄢</span>
   </a>
 
   <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNHd4MGRkdnN6enAyZmI1c2V6dGdzN254OWRlbDY5a3A3c3VqMTVxeCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/ue7Oh8WdVspgI/source.gif" id="mascot" alt="Mascot" />
+  <header class="main-header">
+    <h1>Commission Your Art ᛝ</h1>
+    
+    <div class="header-nav-group">
+      <a href="donate.html" class="donate-button">
+        <img src="images/jar.png" alt="Donate Jar" class="donate-jar" />
+        <span class="donate-text">Donate ❤︎</span>
+      </a>
 
-  <header>
-    <h1>Commission Your Art!</h1>
-    <nav>
-      <li>
-        <a href="donate.html" class="donate-button">
-          <img src="images/jar.png" alt="Donate Jar" class="donate-jar">
-          <span class="donate-text">Donate</span>
-        </a>
-      </li>
-    </nav>
-    <button id="tosBtn" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Outfit; font-weight: 600;">📜 Terms of Service</button>
+      <button id="tosBtn" class="tos-button">⋮ ⌗ Terms of Service</button>
+    </div>
   </header>
 
-  <section class="portfolio">
-    <h2>My Work <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" style="width: 20px;"></h2>
-    <div class="portfolio">
-      <img src="images/1.png"/><img src="images/2.png" /><img src="images/3.png" /><img src="images/4.png" />
+  <section class="portfolio-section">
+    <h2>My Work ≽^• ˕ • ྀི≼ <img src="https://img1.picmix.com/output/stamp/normal/5/8/1/8/188185_c9254.gif" alt="Sparkle" class="header-gif" /></h2>
+    
+    <div class="portfolio-grid">
+      <div class="portfolio-item"><img src="images/1.png" alt="Artwork 1" /></div>
+      <div class="portfolio-item"><img src="images/2.png" alt="Artwork 2" /></div>
+      <div class="portfolio-item"><img src="images/3.png" alt="Artwork 3" /></div>
+      <div class="portfolio-item"><img src="images/4.png" alt="Artwork 4" /></div>
     </div>
   </section>
 
-  <section class="done-commissions">
-    <p>Finished Comms!</p>
-    <div class="comm-img"><img src="images/35-1.png" alt="Finished Commission 1"><div class="price-tag">💵 $35</div></div>
-    <div class="comm-img"><img src="images/10-1.png" alt="Finished Commission 2"><div class="price-tag">💵 $10</div></div>
-    <div class="comm-img"><img src="images/10-2.png" alt="Finished Commission 3"><div class="price-tag">💵 $10</div></div>
-    <div class="comm-img"><img src="images/70-1.png" alt="Finished Commission 4"><div class="price-tag">💵 $70</div></div>
-    <div class="comm-img"><img src="images/robux-1.png" alt="Finished Commission 5"><div class="price-tag">💸 1000 Robux</div></div>
+  <section class="finished-comms-wrap">
+    <h2>Finished Commissions ⋆‧°𓏲ּ𝄢</h2>
+
+    <div class="comms-grid">
+      <div class="comm-box">
+        <img src="images/35-1.png" alt="Finished Commission 1" />
+        <span class="price-badge">❤︎ $35</span>
+      </div>
+
+      <div class="comm-box">
+        <img src="images/10-1.png" alt="Finished Commission 2" />
+        <span class="price-badge">❤︎ $10</span>
+      </div>
+
+      <div class="comm-box">
+        <img src="images/10-2.png" alt="Finished Commission 3" />
+        <span class="price-badge">❤︎ $10</span>
+      </div>
+
+      <div class="comm-box">
+        <img src="images/70-1.png" alt="Finished Commission 4" />
+        <span class="price-badge">❤︎ $70</span>
+      </div>
+
+      <div class="comm-box">
+        <img src="images/robux-1.png" alt="Finished Commission 5" />
+        <span class="price-badge">⋮ ⌗ 1,000 Robux</span>
+      </div>
+    </div>
   </section>
 
   <section class="contact">
-    <p>Request now and pay once I accept! I only take upfront payments, or half now, half when I'm done.</p>
     <h2>Request a Commission</h2>
 
     <div class="slots-section">
@@ -140,9 +684,9 @@
     <div id="waitlistSection">
       <p style="color: var(--secondary-color); font-weight: 700; font-size: 1.1rem; margin-bottom: 6px;">all slots are taken right now! 🌸</p>
       <p class="waitlist-info" id="waitlistQueueInfo"></p>
-      <button id="waitlistBtn">🔔 join the waitlist</button>
+      <button id="waitlistBtn">(˶˃ ᵕ ˂˶) join the waitlist</button>
       <div id="waitlistJoined">
-        <p>you're in! 🎉</p>
+        <p>you're in! ʚɞ</p>
         <p>you're <strong id="waitlistPosition"></strong> in line~</p>
         <p style="font-size:0.82rem; margin-top:8px;">i'll reach out when a slot opens up 💌</p>
       </div>
@@ -151,9 +695,9 @@
 
   <div id="wlModal">
     <div class="wl-box">
-      <h3>🔔 join the waitlist</h3>
+      <h3>(˶˃ ᵕ ˂˶) join the waitlist</h3>
       <p class="wl-sub">fill this out and i'll contact you when a slot opens! 💌</p>
-      <label for="wlName">your name ✨</label>
+      <label for="wlName">your name ʚɞ</label>
       <input type="text" id="wlName" placeholder="name~" maxlength="50" />
       <label for="wlEmail">your email 📧</label>
       <input type="email" id="wlEmail" placeholder="email@example.com" />
@@ -179,13 +723,14 @@
       <textarea id="wlDetails" placeholder="character details, references, colors, etc.~"></textarea>
       <div class="wl-btns">
         <button class="wl-cancel" id="wlCancel">cancel</button>
-        <button id="wlSubmit">join! ✨</button>
+        <button id="wlSubmit">join! ʚɞ</button>
       </div>
     </div>
   </div>
 
-  <footer>&copy; 2025 Cherrubi.</footer>
+  <footer>&copy; 2026 Cherrubi.</footer>
 
+  
   <script>
     // ── FIREBASE ──
     firebase.initializeApp({
@@ -199,17 +744,6 @@
     });
     const db = firebase.database();
     const MAX_SLOTS = 5;
-
-    function applySeasonalTheme() {
-      const now = new Date(), month = now.getMonth()+1, day = now.getDate();
-      const set = (name, colors) => { Object.entries(colors).forEach(([k,v]) => document.documentElement.style.setProperty(k,v)); const b = document.getElementById('seasonal-badge'); if(b) b.textContent = name; };
-      if (month===10) set('🎃 Halloween',{'--primary-color':'#ff6b35','--secondary-color':'#8A615F','--accent-color':'#9d4edd','--bg-gradient-start':'#2d1b2e','--bg-gradient-end':'#1a0f1c','--light-bg':'#3d2940','--border-color':'#ff6b35','--text-color':'#f0b8d4'});
-      else if (month===12&&day<=25) set('🎄 Christmas',{'--primary-color':'#c41e3a','--secondary-color':'#165b33','--accent-color':'#ffd700','--bg-gradient-start':'#f0f8ff','--bg-gradient-end':'#e6f3ff','--light-bg':'#fff5f5','--border-color':'#c41e3a','--text-color':'#165b33'});
-      else if (month===2&&day<=14) set("💕 Valentine's Day",{'--primary-color':'#ff1493','--secondary-color':'#ff69b4','--accent-color':'#ff85c1','--bg-gradient-start':'#ffe4f1','--bg-gradient-end':'#fff0f8','--light-bg':'#fff0f9','--border-color':'#ff1493','--text-color':'#a8417a'});
-      else if (month>=3&&month<=5) set('🌸 Spring',{'--primary-color':'#98d8c8','--secondary-color':'#f7b2bd','--accent-color':'#ffd89b','--bg-gradient-start':'#e8f5e9','--bg-gradient-end':'#fff9e6','--light-bg':'#f0fff4','--border-color':'#98d8c8','--text-color':'#5a7a6f'});
-      else if (month>=6&&month<=8) set('☀️ Summer',{'--primary-color':'#ffa07a','--secondary-color':'#20b2aa','--accent-color':'#ffd700','--bg-gradient-start':'#fff5e6','--bg-gradient-end':'#e6f7ff','--light-bg':'#fffaf0','--border-color':'#ffa07a','--text-color':'#4a6b6b'});
-      else set('💖 Default',{'--primary-color':'#f58cae','--secondary-color':'#a8417a','--accent-color':'#ff99c8','--bg-gradient-start':'#ffe4ec','--bg-gradient-end':'#fff0f6','--light-bg':'#fff0f6','--border-color':'#ffc6e7','--text-color':'#6b4a6f'});
-    }
 
     function renderSlots(taken) {
       const open = MAX_SLOTS - taken;
@@ -257,7 +791,6 @@
     db.ref('waitlist').on('value', snap => renderWaitlistState(snap.val()));
 
     document.addEventListener("DOMContentLoaded", () => {
-      applySeasonalTheme();
       const color = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
       new kursor({ type: 2, color });
 
@@ -332,20 +865,22 @@
 
 <div id="tosModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); font-family: Outfit;">
   <div style="background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end)); margin: 5% auto; padding: 30px; border: 3px solid var(--border-color); border-radius: 20px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
-    <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 20px; font-size: 2rem;">📜 Terms of Service</h2>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">✨ What I Draw</h3><ul style="color: var(--text-color); line-height: 1.8;"><li>Fanart (anime, games, shows, etc.)</li><li>Original characters (OCs)</li><li>Character designs</li><li>Portraits & illustrations</li></ul></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">🚫 What I Don't Draw</h3><ul style="color: var(--text-color); line-height: 1.8;"><li>Heavy gore or graphic violence</li><li>Furries (animal features on humans are OK!)</li><li>NSFW/adult content</li><li>Hateful or offensive content</li><li>Anything that makes me uncomfortable</li></ul><p style="color: var(--text-color); font-size: 0.9rem; margin-top: 10px;"><em>I reserve the right to decline any commission for any reason.</em></p></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">💰 Pricing & Payment</h3><p style="color: var(--text-color); line-height: 1.8;"><strong>Base Prices:</strong><br>• Headshot: $15<br>• Half Body: $30<br>• Full Body: $45<br>• Additional characters: +$20</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 15px;"><strong>Payment:</strong> I accept payment <strong>upfront</strong> or <strong>half now, half when finished</strong>.</p></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">⏱️ Timeline</h3><p style="color: var(--text-color); line-height: 1.8;">Commissions typically take <strong>1-7 days</strong> depending on complexity.</p></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">✏️ Revisions</h3><p style="color: var(--text-color); line-height: 1.8;">Each commission includes <strong>2 free revisions</strong> for minor changes.</p></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">🔄 Refund Policy</h3><p style="color: var(--text-color); line-height: 1.8;">All sales are <strong>final</strong> once work has started.</p><ul style="color: var(--text-color); line-height: 1.8;"><li>If I fail to deliver within the agreed timeframe, you'll receive a full refund</li><li>Technical issues will be fixed for free</li><li>Refunds before work begins are handled case-by-case</li></ul></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">📱 Usage Rights</h3><p style="color: var(--text-color); line-height: 1.8;"><strong>Personal Use:</strong> Artwork for personal purposes is fine!</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;"><strong>Commercial Use:</strong> Requires a commercial license. Contact me!</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;"><strong>My Rights:</strong> I may post finished commissions on social media unless you request privacy.</p></div>
-    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">📧 Contact & Questions</h3><p style="color: var(--text-color); line-height: 1.8;">DM me on Instagram <a href="https://instagram.com/cherrubi11" target="_blank" style="color: var(--primary-color);">@cherrubi11</a> or TikTok <a href="https://tiktok.com/@ch3rrubi" target="_blank" style="color: var(--primary-color);">@ch3rrubi</a></p></div>
-    <p style="text-align: center; color: var(--text-color); margin-top: 20px; font-size: 0.9rem;">By commissioning me, you agree to these terms. 💕</p>
-    <div style="text-align:center; margin-top: 15px;"><button id="tosAgreeBtn" disabled style="padding: 10px 20px; font-family: Outfit; font-weight: 600; border-radius: 8px; border:none; background: var(--primary-color); color:white; cursor:pointer;">✅ I Agree</button></div>
-    <p style="text-align: center; color: var(--text-color); font-size: 0.85rem; margin-top: 10px;">© 2025 Cherrubi. All rights reserved.</p>
+    <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 20px; font-size: 2rem;">⏔⏔⏔ ꒰ ᧔ෆ᧓ ꒱ ⏔⏔⏔ Terms of Service</h2>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">‧˚꒰🐾୭ ˚. ᵎᵎ What I Draw</h3><ul style="color: var(--text-color); line-height: 1.8;"><li>Fanart (anime, games, shows, etc.)</li><li>Original characters (OCs)</li><li>Character designs</li><li>Portraits & illustrations</li></ul></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">𝄞⨾𓍢ִ໋ What I Don't Draw</h3><ul style="color: var(--text-color); line-height: 1.8;"><li>Heavy gore or graphic violence</li><li>Furries (animal features on humans are OK!)</li><li>NSFW/adult content</li><li>Hateful or offensive content</li><li>Anything that makes me uncomfortable</li></ul><p style="color: var(--text-color); font-size: 0.9rem; margin-top: 10px;"><em>I reserve the right to decline any commission for any reason.</em></p></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">‧˚꒰🐾୭ ˚. ᵎᵎ Pricing & Payment</h3><p style="color: var(--text-color); line-height: 1.8;"><strong>Base Prices:</strong><br>• Headshot: $15<br>• Half Body: $30<br>• Full Body: $45<br>• Additional characters: +$20</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 15px;"><strong>Payment:</strong> I accept payment <strong>upfront</strong> or <strong>half now, half when finished</strong>.</p></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">𝄞⨾𓍢ִ໋ Timeline</h3><p style="color: var(--text-color); line-height: 1.8;">Commissions typically take <strong>1-7 days</strong> depending on complexity.</p></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">‧˚꒰🐾୭ ˚. ᵎᵎ Revisions</h3><p style="color: var(--text-color); line-height: 1.8;">Each commission includes <strong>2 free revisions</strong> for minor changes.</p></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">𝄞⨾𓍢ִ໋ Refund Policy</h3><p style="color: var(--text-color); line-height: 1.8;">All sales are <strong>final</strong> once work has started.</p><ul style="color: var(--text-color); line-height: 1.8;"><li>If I fail to deliver within the agreed timeframe, you'll receive a full refund</li><li>Technical issues will be fixed for free</li><li>Refunds before work begins are handled case by case</li></ul></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">‧˚꒰🐾୭ ˚. ᵎᵎ Usage Rights</h3><p style="color: var(--text-color); line-height: 1.8;"><strong>Personal Use:</strong> Artwork for personal purposes is fine!</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;"><strong>Commercial Use:</strong> Requires a commercial license. Contact me!</p><p style="color: var(--text-color); line-height: 1.8; margin-top: 10px;"><strong>My Rights:</strong> I may post finished commissions on social media unless you request privacy.</p></div>
+    <div style="background: var(--light-bg); padding: 20px; border-radius: 12px; border: 2px solid var(--border-color);"><h3 style="color: var(--primary-color); margin-top: 0;">𝄞⨾𓍢ִ໋ Contact & Questions</h3><p style="color: var(--text-color); line-height: 1.8;">DM me on Instagram <a href="https://instagram.com/cherrubi11" target="_blank" style="color: var(--primary-color);">@cherrubi11</a> or TikTok <a href="https://tiktok.com/@ch3rrubi" target="_blank" style="color: var(--primary-color);">@ch3rrubi</a></p></div>
+    <p style="text-align: center; color: var(--text-color); margin-top: 20px; font-size: 0.9rem;">By commissioning me, you agree to these terms >ᴗ<</p>
+    <div style="text-align:center; margin-top: 15px;"><button id="tosAgreeBtn" disabled style="padding: 10px 20px; font-family: Outfit; font-weight: 600; border-radius: 8px; border:none; background: var(--primary-color); color:white; cursor:pointer;">˚˖𓍢ִ໋🦢˚ I Agree</button></div>
+    <p style="text-align: center; color: var(--text-color); font-size: 0.85rem; margin-top: 10px;">© 2026 Cherrubi. All rights reserved.</p>
   </div>
 </div>
+
+
 <script>
   const tosModal = document.getElementById('tosModal');
   document.getElementById('tosBtn').onclick = () => tosModal.style.display = 'block';
